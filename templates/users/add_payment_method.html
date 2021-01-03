@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+
+{% block meta %}
+<title>Brandpulsar | Add Payment Method</title>
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+<style>
+    .header-nav,
+    .footer {
+        display: none;
+    }
+</style>
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="auth-container">
+                    <div class="auth-content" style="overflow-y: scroll;width: 100%;">
+                        <h1 class="pb-3">Add new payment method</h1>
+                        <ul class="nav payment-methods-nav nav-tabs" id="myTab" role="tablist">
+
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab"
+                                    aria-controls="paypal" aria-selected="false"><img
+                                        src="{% static 'images/paypal.svg' %}" />Paypal</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="cashapp-tab" data-toggle="tab" href="#cashapp" role="tab"
+                                    aria-controls="cashapp" aria-selected="false"><img
+                                        src="{% static 'images/cashapp.svg' %}" />CashApp</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="skrill-tab" data-toggle="tab" href="#skrill" role="tab"
+                                    aria-controls="skrill" aria-selected="false"><img
+                                        src="{% static 'images/skrill.svg' %}" />Skrill</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="wire-tab" data-toggle="tab" href="#wire" role="tab"
+                                    aria-controls="wire" aria-selected="false"><img
+                                        src="{% static 'images/bank-transfer.svg' %}" />Wire Transfer</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="paypal" role="tabpanel"
+                                aria-labelledby="paypal-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="email" name="email" id="id_email" required />
+                                            <label for="id_email">Email</label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn-green btn-md" value="Add paypal account" />
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="cashapp" role="tabpanel" aria-labelledby="cashapp-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="cashapp_id" id="id_cashapp" required />
+                                            <label for="id_cashapp">Cashapp id</label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn-green btn-md" value="Add cashapp account" />
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="skrill" role="tabpanel" aria-labelledby="skrill-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="text" name="skrill-email-or-phone" id="id_email" required />
+                                            <label for="id_email">Phone or email</label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn-green btn-md" value="Add skrill account" />
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="wire" role="tabpanel" aria-labelledby="wire-tab">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="account_no" id="id_account_no" required />
+                                            <label for="id_account_no">Account number</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="routing_no" id="id_routing_no" required />
+                                            <label for="id_routing_no">Routing number</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="text" name="first_name" id="id_first_name" required />
+                                            <label for="id_first_name">Account holder first name</label>
+                                        </div>
+                                        <div class="input-box col">
+                                            <input type="text" name="last_name" id="id_last_name" required />
+                                            <label for="id_last_name">Account holder last name</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="iban" id="id_iban" required />
+                                            <label for="id_iban">IBAN</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="swift" id="id_swift" required />
+                                            <label for="id_swift">SWIFT</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="email" name="email" id="id_email" required />
+                                            <label for="id_email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-box col">
+                                            <input type="number" name="phone" id="id_phone" required />
+                                            <label for="id_phone">Phone</label>
+                                        </div>
+                                    </div>
+                                    <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                                        <input type="checkbox"
+                                            style="width: auto;margin-right: 5px;margin-top: 5px;" />By checking
+                                        this box, I agree
+                                        that
+                                        brandpulsar.com may
+                                        contact me from time to time at the email address above to tell me about its
+                                        services.
+                                    </p>
+                                    <input type="submit" class="btn-green btn-md" value="Add payment method" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

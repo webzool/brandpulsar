@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Brandpulsar | Registration</title>
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+<style>
+    .header-nav,
+    .footer {
+        display: none;
+    }
+</style>
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="auth-container">
+                    <a href="{% url 'main:index' %}" class="auth-badge">
+                        <img src="{% static 'images/cosmic-icon-tr.svg' %}" />
+                    </a>
+                    <div class="auth-image">
+                        <div class="title">
+                            <h1>Register to buy or sell premium domains</h1>
+                        </div>
+                    </div>
+                    <div class="auth-content">
+                        <a href="{% url 'main:index' %}" class="purple-back-btn mb-3"><img
+                                src="{% static 'images/left-arrow-2.svg' %}">Back to
+                            home
+                            page</a>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="text" name="name" id="id_name" required />
+                                    <label for="name">First name</label>
+                                </div>
+                                <div class="input-box col">
+                                    <input type="text" name="surname" id="id_surname" required />
+                                    <label for="surname">Last name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="email" name="email" id="id_email" required />
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="number" name="phone" id="id_phone" required />
+                                    <label for="phone">Phone</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="password" name="password1" id="id_password1" required />
+                                    <label for="password1">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="password" name="password2" id="id_password2" required />
+                                    <label for="password2">Password confirmation</label>
+                                </div>
+                            </div>
+                            <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                                <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By
+                                checking
+                                this box, I agree
+                                that
+                                brandpulsar.com may
+                                contact me from time to time at the email address above to tell me about its
+                                services.
+                            </p>
+                            <input type="submit" class="btn-green btn-md" value="Get an account" />
+                            <p style="color: #0C1142;text-align: center;font-size: 10px;line-height: 18px">By submitting
+                                this form I have read
+                                and acknowledged the <a href="#">Privacy
+                                    Policy</a>.
+                            </p>
+                            <p style="color: #0C1142;text-align: center;font-size: 10px;line-height: 18px">Already
+                                registered? <a href="{% url 'users:login-view' %}">Log in</a>.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

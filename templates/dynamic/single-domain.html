@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<link rel="canonical" href="https://brandpulsar.com/domains/{{ domain.slug }}/" />
+<meta content="index, follow" name="robots">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% load mathfilters %}
+{% block content %}
+{% load static %}
+<button class="btn-green btn-md" data-toggle="modal" data-target="#contactWithOwnerForm"
+    style="border-radius: 3px 15px 3px 15px;position: fixed;right: 20px;z-index: 1111;bottom: 20px;">Contact with
+    owner</button>
+<section class="section product-bg" style="background-color: #f5f6f9;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="domain-top">
+                    <div class="header-breadcrumbs mobile-hidden">
+                        <a href="/domains">Domains</a>
+                        <span class="breadcrumb-delimiter">></span>
+                        <a href="{% url 'main:domain-detail' domain.slug%}">{{ domain.name }}.{{ domain.extension }}</a>
+                    </div>
+                    <div class="domain-actions">
+                        <div class="share">
+                            <a href="#" type="button" data-toggle="modal" data-target="#shareModal"
+                                data-whatever="@mdo">
+                                <img id="share-btn" src="{% static 'images/share-2.svg' %}" />
+                                <span>Share</span></a>
+                        </div>
+                        <a class="toggle-fav like" id="like" data-id="{{ domain.pk }}" domain-id="{{ domain.id }}"
+                            href="#">
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ domain.thumbnail_image.url }}" class="product-img"
+                    alt="{{ domain.name }}.{{ domain.extension }}" />
+                {% if domain.industry.all %}
+                <h5 class="mt-5">Industries</h5>
+                <ul class="industries">
+                    {% for industry in domain.industry.all %}
+                    <li>
+                        <a href="{% url 'main:industry-detail' industry.slug %}">{{ industry.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% if domain.tags.all %}
+                <h5 class="mt-3">Tags</h5>
+                <ul class="industries">
+                    {% for tag in domain.tags.all %}
+                    <li>
+                        <span>{{ tag.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="domain-details">
+                    <h1 id="txtInput">{{ domain.name }}.{{ domain.extension }}</h1>
+                    <div class="line mt-3 mb-3"></div>
+                    <select hidden id="voiceList"></select>
+                    <p class="mb-3 domain-description">
+                        A premium domain name for your business is on sale! It is {{ domain.length }} characters,
+                        {{domain.syllable}} syllables.
+                        Highly brandable domain name <strong>{{domain}}</strong> is super easy to read and
+                        <span id="btnSpeak">pronounce</span>, it is catchy and
+                        highly
+                        memorable. <strong>{{ domain }}</strong>
+                        is good for
+                        {% for industry in domain.industry.all %}
+                        {{ industry.name }},
+                        {% if forloop.last %}
+                        {{ industry.name }}
+                        {% endif %}
+                        {% endfor %}
+                        businesses.
+                    </p>
+                    <button class="btn-purple btn-md" style="width: 100%;" id="buy-button" stripe="{{ pub_key }}"
+                        base-url="{{ base_url }}" one-time-id="{{ domain.stripe_one_time_id }}">Buy Now for
+                        $<span id="one-time-price">{{ domain.price }}</span></button>
+                    <div class="divider">
+                        <hr>
+                        <p class="divider-text">
+                            <span>Or</span>
+                        </p>
+                    </div>
+                    <div class="btn-box">
+                        {% for plan in plans %}
+                        <button id="plan" plan-id="{{ plan.plan_id }}" class="btn-white btn-sm">{{ plan.nickname }}
+                            Months -
+                            ${{ plan.unit_amount }}
+                            /
+                            month</button>
+                        {% endfor %}
+                    </div>
+                    <div id="error-message"></div>
+                    <div class="badges">
+                        <img src="{% static 'images/payment-methods.svg' %}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section" style="padding-top: 50px;">
+    <div class="container">
+        <div class="row vert-center">
+            <div class="col-md-6">
+                <h2>What you will get</h2>
+                <p class="mb-3">By purchasing this product, you will acquire the ownership of this domain along with its
+                    logo and design concepts.</p>
+                <p class="mb-3">By purchasing this product, you will acquire the ownership of this domain along with its
+                    logo and
+                    design concepts. By purchasing this product, you will acquire the ownership of this domain along
+                    with its logo and design concepts.</p>
+                <ul class="icon-list">
+                    <li><img src="{% static 'images/check.svg' %}" alt="Brandpulsar" />Domain Name</li>
+                    <li><img src="{% static 'images/check.svg' %}" alt="Brandpulsar" />Logo Design</li>
+                    <li><img src="{% static 'images/check.svg' %}" alt="Brandpulsar" />Design Concepts</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="domain-details">
+                    <h3>Domain Specs</h3>
+                    <div class="line mt-3 mb-3"></div>
+                    <ul class="domain-specs">
+                        <li><span class="spec-name">Created</span><span>{{ domain.date_created|date:"m.d.Y" }}</span>
+                        </li>
+                        <li><span class="spec-name">Viewed</span><span>{{ domain.ranking }}</span></li>
+                        <li><span class="spec-name">Length</span><span
+                                class="domain-feedback {{ domain.domain_length }}">{{ domain.domain_length }}</span>
+                        </li>
+                        <li><span class="spec-name">Brandable</span><span
+                                class="domain-feedback {{ domain.brandable }}">{{ domain.brandable }}</span></li>
+                        <li><span class="spec-name">Pronouncement</span><span
+                                class="domain-feedback {{ domain.pronouncement }}">{{ domain.pronouncement }}</span>
+                        </li>
+                        <li><span>Negotiation</span><span><a data-toggle="modal" style="color: #6831e4;cursor: pointer"
+                                    data-target="#negotiationForm">
+                                    Offer a price
+                                </a></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% if domain.mockup_1 %}
+                <img src="{{ domain.mockup_1.url }}" class="product-img"
+                    alt="{{ domain.name }}.{{ domain.extension }}" />
+                {% else %}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {% if domain.mockup_2 %}
+                <img src="{{ domain.mockup_2.url }}" class="product-img"
+                    alt="{{ domain.name }}.{{ domain.extension }}" />
+                {% else %}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {% if domain.mockup_3 %}
+                <img src="{{ domain.mockup_3.url }}" class="product-img"
+                    alt="{{ domain.name }}.{{ domain.extension }}" />
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center">Explore similar domains</h2>
+                <ul class="similar-domains">
+                    {% for industry in domain.industry.all %}
+                    <li>
+                        <a href="{% url 'main:industry-detail' industry.slug %}">{{ industry.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+</section>
+<section class="section" style="padding-top: 0px;">
+    <div class="container-fluid">
+        <div class="col-sm-12">
+            <div class="cta-five" style="margin-top: 0px;">
+                <div class="content">
+                    <h3>Make your domain featured</h3>
+                    <p>By purchasing this product, you will acquire the ownership of this domain along with its logo and
+                        design concepts.</p>
+                </div>
+
+                <a href="{% url 'marketplace:become-a-seller' %}" class="btn-green btn-lg"><span>Sign Up Now</span>
+                    <img src="{% static 'images/next-btn.svg' %}" /></a>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Negotiation Form -->
+<div class="modal fade" id="negotiationForm" tabindex="-1" aria-labelledby="negotiationForm" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="negotiationForm">Apply for negotiation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0px;">
+                <div id="negotiation-form" class="form-box" style="padding: 30px;padding-top: 0px">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-box col">
+                                <input class="form-control" type="hidden" name="domain" id="n_domain"
+                                    value="{{domain.pk}}">
+                                <input type="text" name="first_name" id="n_first_name" required />
+                                <label for="n_first_name">First name</label>
+                            </div>
+                            <div class="input-box col">
+                                <input type="text" name="last_name" id="n_last_name" required />
+                                <label for="n_last_name">Last name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="email" name="email" id="n_email" required />
+                                <label for="n_email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="number" name="phone" id="n_phone" required />
+                                <label for="n_phone">Phone</label>
+                            </div>
+                            <div class="input-box col">
+                                <input type="number" name="price" id="n_price" required />
+                                <label for="n_price">Price</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <textarea name="message" id="n_message" required></textarea>
+                                <label for="n_message">Message</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                                <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By
+                                checking
+                                this box, I agree
+                                that
+                                brandpulsar.com may
+                                contact me from time to time at the email address above to tell me about its
+                                services.
+                            </p>
+                            <button id="submit_negotiation" class="btn-green w-100 btn-md">Apply</button>
+
+                            <div id="thanks-negotiation">
+                                <img class="success-icon pb-3" src="{% static 'images/success.svg' %}" alt="">
+                                <h2 class="text-center">Thanks, we have sent your message to the owner.</h2>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Negotiation End -->
+<!-- Contact With Owner Form -->
+<div class="modal fade" id="contactWithOwnerForm" tabindex="-1" aria-labelledby="contactWithOwnerForm"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="contactWithOwnerForm">Contact With Owner Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0px;">
+                <div id="negotiation-form" class="form-box" style="padding: 30px;padding-top: 0px">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="text" id="name-id" required>
+                                <label for="name-id">First name</label>
+                            </div>
+                            <div class="input-box col">
+                                <input type="text" id="surname-id" required>
+                                <label for="surname-id">Last name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="hidden" id="domain-id" value="{{domain.pk}}">
+                                <input type="email" id="email-id" required>
+                                <label for="email-id">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <textarea name="message" id="message-id" required></textarea>
+                                <label for="message-id">Message</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                                <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By
+                                checking
+                                this box, I agree
+                                that
+                                brandpulsar.com may
+                                contact me from time to time at the email address above to tell me about its
+                                services.
+                            </p>
+                            <button id="contact-btn" class="btn-green btn-md" style="width: 100%;">Submit</button>
+                            <div id="thanks">
+                                <img class="success-icon pb-3" src="{% static 'images/success.svg' %}" alt="">
+                                <h2 class="text-center">We, sent your message to the owner.</h2>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact With Owner Form End -->
+<div class="modal modal-sm fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareModal">Share</h5><br>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <p style="margin-left: 15px;">Share this Brandpulsar domain:</p>
+            <div class="modal-body" style="padding: 0px;">
+                <ul class="share-actions">
+                    <li><a
+                            href="https://pinterest.com/pin/create/button/?url={{ base_url }}{{ domain.thumbnail_image.url }}&media={{ base_url }}{{ domain.thumbnail_image.url }}&description={{ meta_description }}"><img
+                                src="{% static 'images/pinterest.svg' %}" />Pinterest</a></li>
+                    <li><a
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ base_url }}/domains/{{ domain.slug }}/"><img
+                                src="{% static 'images/facebook-2.svg' %}" />Facebook</a></li>
+                    <li><a href="https://twitter.com/intent/tweet?text={{ base_url }}/domains/{{ domain.slug }}/"><img
+                                src="{% static 'images/twitter.svg' %}" />Twitter</a></li>
+                    <li><a
+                            href="mailto:?subject=Check%20this%20awesome%20domain&body={{ base_url }}/domains/{{ domain.slug }}/"><img
+                                src="{% static 'images/email.svg' %}" />Email</a></li>
+                    <li><a href="#" id="copy" type="button"><img
+                                src="{% static 'images/copy.svg' %}" /><span>Copy</span></a>
+                    </li>
+                    <input id="page-url" style="opacity: 0;">
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+
+<script src="https://js.stripe.com/v3/" type="text/javascript"></script>
+<script src="{% static 'js/single-domain.js' %}"></script>
+<script src="{% static 'js/negotiate_contact.js' %}"></script>
+<script type="application/ld+json">
+    {
+        "@context": "http:\/\/schema.org\/",
+        "@type": "Product",
+        "name": "{{ domain.name }}.{{ domain.extension }} domain name",
+        "image": [
+            "https://brandpulsar.com{{ domain.thumbnail_image.url }}"
+        ],
+        "description": "{{ domain.name }} is a premium domain that you can use to name your business. It has a number of advantages such as being unique with {{ domain.name|length }} characters and highly brandable. The words in { {
+        domain.name
+    }
+    }
+    perfectly rhyme making it super catchy and highly memorable.This domain name is a good fit
+    for {% for tag in domain.tags.all %}
+    {{ tag.title }}, {% endfor %}
+    businesses.This domain is super easy to read and pronounce.
+    ",
+    "sku": "{{ domain.stripe_one_time_id }}",
+    "brand": {
+        "@type": "Organization",
+        "name": "Brandpulsar"
+    },
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": {
+            {
+                domain.price
+            }
+        },
+        "availability": "http:\/\/schema.org\/OnlineOnly",
+        "url": "https:\/\/brandpulsar.com\/domains\/{{ domain.slug }}",
+        "seller": {
+            "@type": "Organization",
+            "name": "Brandpulsar"
+        },
+        "priceValidUntil": "2020-12-16"
+    }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% block content %}
+{% load static %}
+<style>
+    .header-nav {
+        position: relative;
+    }
+</style>
+<section class="section bg-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center title">Industries</h1>
+            </div>
+        </div>
+        <!-- {% for industry in industries %}
+        <div class="industry-box">
+            <a href="{% url 'main:industry-detail' industry.slug %}">
+                <h3 class="pb-3">{{industry.name}}</h3>
+            </a>
+            <div class="row">
+                {% for child in industry.get_children %}
+                <div class="col-lg-4">
+                    <a class="d-flex align-items-center" href="{% url 'main:industry-detail' child.slug %}">
+                        <div class="industry-photo">
+                            <img src="{{child.featured_item.thumbnail_image.url}}" alt="">
+                        </div>
+                        <div class="text-center">
+                            <h4 class="ml-2">{{ child.name }}</h4>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %} -->
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            {% for industry in industries %}
+            <div class="col-md-3 mb-3">
+                <a href="{% url 'main:industry-detail' industry.slug %}">
+                    <h4 class="mb-3">{{industry.name}}</h4>
+                </a>
+                <ul class="sub-industries">
+                    {% for child in industry.get_children %}
+                    <li>
+                        <a href="{% url 'main:industry-detail' child.slug %}">
+                            <!-- <img src="{{child.featured_item.thumbnail_image.url}}" alt=""> -->
+                            {{ child.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% csrf_token %}
+
+{% endblock %}

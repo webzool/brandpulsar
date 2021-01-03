@@ -1,0 +1,156 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="profile-header-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12"></div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="profile-box row">
+          <div class="col-md-6 info">
+            <div class="profile">
+              <img src="{% static 'images/avatar-default.svg' %}" class="profile-avatar" />
+              <div class="profile-details">
+                <h1>Elmar Aliyev</h1>
+                <div class="profile-details-meta">
+                  <div class="location">
+                    <img src="{% static 'images/pin.svg' %}" />Amsterdam
+                  </div>
+                  <div class="date">
+                    <img src="{% static 'images/calendar.svg' %}" />17.08.2020
+                  </div>
+                </div>
+                <div class="reviews-overall">
+                  <img src="{% static 'images/review-stars.svg' %}" />
+                  4.9
+                </div>
+              </div>
+            </div>
+            <div class="domains">
+              <h3>Domains <span>( 3 domains )</span></h3>
+              <div class="profile-domain-box">
+                <ul>
+                  <li>
+                    <div>
+                      <div class="domain-name">webzool.io</div>
+                      <ul class="industries">
+                        <li>
+                          <a href="#">Business</a>
+                          <a href="#">Creative</a>
+                          <a href="#">Design</a>
+                          <a href="#">Web</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="domain-price">
+                      $4,488.00
+                    </div>
+                    <div>
+                      <a href="#" class="btn-purple">
+                        <span>Buy Now</span>
+                        <img src="{% static 'images/next-btn.svg' %}" />
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="domain-name">topslotreviews.com</div>
+                      <ul class="industries">
+                        <li>
+                          <a href="#">Business</a>
+                          <a href="#">Creative</a>
+                          <a href="#">Design</a>
+                          <a href="#">Web</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="domain-price">
+                      $2,345.00
+                    </div>
+                    <div>
+                      <a href="#" class="btn-purple">
+                        <span>Buy Now</span>
+                        <img src="{% static 'images/next-btn.svg' %}" />
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="domain-name">posvice.com</div>
+                      <ul class="industries">
+                        <li>
+                          <a href="#">Business</a>
+                          <a href="#">Creative</a>
+                          <a href="#">Design</a>
+                          <a href="#">Web</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="domain-price">
+                      $1,299.00
+                    </div>
+                    <div>
+                      <a href="#" class="btn-purple">
+                        <span>Buy Now</span>
+                        <img src="{% static 'images/next-btn.svg' %}" />
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <div class="domain-name">gygzy.com</div>
+                      <ul class="industries">
+                        <li>
+                          <a href="#">Business</a>
+                          <a href="#">Creative</a>
+                          <a href="#">Design</a>
+                          <a href="#">Web</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="domain-price">
+                      $7,569.00
+                    </div>
+                    <div>
+                      <a href="#" class="btn-purple">
+                        <span>Buy Now</span>
+                        <img src="{% static 'images/next-btn.svg' %}" />
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 reviews">
+            <div class="reviews-header">
+              <h3>Reviews<span>( 272 reviews )</span></h3>
+            </div>
+            <div class="reviews-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

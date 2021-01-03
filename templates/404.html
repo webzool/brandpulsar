@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<section class="thank-you section standard-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1 class="title white">Looks like you lost in space.</h1>
+                <img src="{% static 'images/404.svg' %}" style="width: 500px;margin: 30px auto;display: block;" />
+                <a class="btn-green btn-md" href="{% url 'main:domains' %}">Check out domains</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

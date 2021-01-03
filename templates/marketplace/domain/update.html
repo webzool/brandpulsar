@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Brandpulsar | Domain update: {{request.user.email}}</title>
+{% endblock meta %}
+{% block content %}
+<style>
+    .header-nav,
+    .footer {
+        display: none;
+    }
+</style>
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="auth-container">
+                    <div class="auth-content form-box" style="overflow-y: scroll;width: 100%;">
+                        <h1 class="text-center pb-3">Update your domain</h1>
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{field}}{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="text" name="name" maxlength="150" id="id_name">
+                                    <label for="id_name">Domain name: {{domain.name}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="number" name="length" min="0" id="id_length">
+                                    <label for="id_length">Domain length: {{domain.length}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="text" name="extension" maxlength="150" id="id_extension">
+                                    <label for="id_extension">Domain extension: {{domain.extension}}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="number" name="price" step="1" id="id_price">
+                                    <label for="id_price">Domain price: $ {{domain.price}}</label>
+                                </div>
+                                {% if domain.negotiable_price %}
+                                <div class="input-box col">
+                                    <input type="number" name="negotiable_price" id="id_negotiable_price" />
+                                    <label for="id_negotiable_price">Lowest price ( minimum price for domain )</label>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="file" name="thumbnail_image" accept="image/*" id="id_thumbnail_image">
+                                    <label for="id_thumbnail_image">Thumbnail image:</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="{% url 'users:dashboard' %}" class="btn-white btn-md">Cancel</a>
+                                <button class="btn-green btn-md" type="submit">Update domain</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

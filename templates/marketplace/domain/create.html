@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+
+<title>Brandpulsar | Add Domain</title>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+<title>Password update: {{request.user.email}} | Brandpulsar</title>
+
+
+{% endblock meta %}
+
+{% block content %}
+
+<style>
+    .select2.select2-container .select2-selection--multiple .select2-search--inline .select2-search__field {
+        width: 100% !important;
+        height: calc(2.25rem + 2px);
+    }
+
+    .select2-container--default .select2-selection--multiple,
+    .select2-container--default.select2-container--open.select2-container--above .select2-selection--single,
+    .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple,
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border: none;
+    }
+</style>
+
+<section class="profile-header-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="text-white">Add your domain</h1>
+                <p class="text-white">Brand Pulsar is a marketplace to sell premium domain names that is built around
+                    the ideas and spirit of its community.
+                </p>
+            </div>
+            <div class="col-md-7"></div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h3>Benefits of adding domain</h3>
+                <p class="mb-3">With hundreds of potential buyers visiting our platform every day, your domain can get
+                    sold only
+                    within a few days.
+                </p>
+                <p>Wanna sell fast? <span class="purple">Feature</span> your domain to get more exposure. Be on top of
+                    the lists and appear on
+                    banners.
+                </p>
+            </div>
+            <div class="col-md-7">
+                <div class="domain-form-box">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="text" name="name" maxlength="200" id="id_name" required />
+                                <label for="id_name">Domain name</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-box col">
+                                <select name="extension" id="id_extension">
+                                    <option value="com">com</option>
+                                    <option value="net">net</option>
+                                    <option value="org">org</option>
+                                    <option value="co">co</option>
+                                    <option value="io">io</option>
+                                </select>
+                                <label for="id_extension">Domain extension</label>
+                            </div>
+                        </div>
+                        <div id="estimated-price"></div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="number" name="price" required id="id_price" />
+                                <label for="id_price">Domain price</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-box col">
+                                <select name="negotiation" id="id_negotiation">
+                                    <option>Choose</option>
+                                    <option value="yes">yes</option>
+                                    <option value="no">no</option>
+                                </select>
+                                <label for="id_negotiation">Are you open for negotiations?</label>
+                            </div>
+                        </div>
+
+                        <div class="row" id="lowest_price_field">
+                            <div class="input-box col">
+                                <input type="number" name="negotiable_price" id="id_negotiable_price" />
+                                <label for="id_negotiable_price">Lowest price ( minimum price for domain )</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="file" name="thumbnail_image" accept="image/*" id="id_thumbnail_image">
+                                <label for="id_thumbnail_image">Thumbnail image:</label>
+                            </div>
+                        </div>
+                        <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                            <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By checking
+                            this box, I agree
+                            that
+                            brandpulsar.com may
+                            contact me from time to time at the email address above to tell me about its
+                            services.
+                        </p>
+                        <input type="submit" class="btn-green btn-md" value="Apply" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block extra_js %}
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> -->
+<script src="{% static 'js/appraisal.js' %}"></script>
+
+
+{% endblock %}

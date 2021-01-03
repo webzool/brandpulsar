@@ -1,0 +1,227 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta content="index, follow" name="robots" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+{% endblock meta %} {% block content %} {% load static %}
+
+<section class="hwi" id="container">
+  <div class="left"></div>
+  <div class="right"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h1 class="title mb-5">Level Up Your Branding with Premium Domains</h1>
+        <a href="{% url 'main:domains' %}" class="btn-purple btn-lg"><span>Explore Domains</span>
+          <img src="{% static 'images/next-btn.svg' %}" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">What Do You Get</h2>
+      </div>
+    </div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+          <h4>Premium Names</h4>
+          <p>
+            Browse and select one of the most attractive domain names from our massive selection. We are adding dozens
+            of premium
+            domain names every day.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+          <h4>Appealing Logo</h4>
+          <p>
+            Along with a premium domain, you also get a professionally crafted logo to give your visitors a perfect
+            first impression
+            and a brand to build on.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+          <h4>Professional Branding</h4>
+          <p>
+            Apart from just a domain and a logo, you will get all the branding items there are such as business card
+            designs, and <br>
+            other mock-ups.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cta-three">
+          <div class="content">
+            <h2>It all starts with a great domain name.</h2>
+            <a href="{% url 'main:domains' %}" class="btn-green btn-md btn-arrow"><span>Explore Domains</span>
+              <img src="{% static 'images/next-btn.svg' %}" /></a>
+          </div>
+          <div class="image">
+            <img src="{% static 'images/cta-image.png' %}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>How it works</h2>
+        <p>
+          Domain name acquisition has never been this fast and simple.
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-6" style="display: flex;flex-direction: column;justify-content: space-between;">
+        <div class="how-it-works-box">
+          <div class="icon-box" style="background-color: #c0a9f4;">
+            <img src="{% static 'images/select.svg' %}" />
+          </div>
+          <div class="content">
+            <h4>Choose Your Domain</h4>
+            <p>
+              Browse through our massive catalog of distinct and memorable domain names to find the most suitable one
+              for your
+              business.
+            </p>
+          </div>
+        </div>
+        <div class="how-it-works-box">
+          <div class="icon-box" style="background-color: #ffd3c0;">
+            <img src="{% static 'images/purchase.svg' %}" />
+          </div>
+          <div class="content">
+            <h4>Make a Purchase</h4>
+            <p>
+              Once you find your preferred name, fill out all the details and successfully purchase the domain of your
+              choice.
+            </p>
+          </div>
+        </div>
+        <div class="how-it-works-box">
+          <div class="icon-box" style="background-color: #aed5fd;">
+            <img src="{% static 'images/transfer.svg' %}" />
+          </div>
+          <div class="content">
+            <h4>Get Your Domain</h4>
+            <p>
+              Once we have your details and the payment, we will go ahead and start transferring the selected domain to
+              your preferred
+              account.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider-top"></div>
+<section class="testimonials-section">
+  <div class="circle-posvice">
+    <img src="{% static 'images/testimonials-posvice-circle.svg' %}" />
+  </div>
+  <div class="circle-webzool">
+    <img src="{% static 'images/testimonials-webzool-circle.svg' %}" />
+  </div>
+  <div class="circle-gygzy">
+    <img src="{% static 'images/testimonials-gygzy-circle.svg' %}" />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>We Have the Trust of Many Businesses</h2>
+        <p class="mb-5">
+          Brandpulsar has helped dozens of businesses find their great domain names and build their brands in no time.
+          As we
+          pride ourselves with high-level of customer satisfaction, find out what our customers have to say about us.
+        </p>
+        <a href="{% url 'main:domains' %}" class="btn-purple btn-lg"><span>Go To Domains</span>
+          <img src="{% static 'images/next-btn.svg' %}" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider-bottom"></div>
+<section>
+  <div class="testimonials">
+    <div class="testimonial-single">
+      <h4>“Brandpulsar's premium selection is what helped us reflect our creativity in our brand.”</h4>
+      <div class="meta">
+        <img src="{% static 'images/webzool.svg' %}" class="logo" />
+        <img src="{% static 'images/review-stars.svg' %}" class="rating" />
+      </div>
+    </div>
+    <div class="testimonial-single">
+      <h4>“If you have a tight deadline for creating and launching your brand, Brandpulsar is the way to go.”</h4>
+      <div class="meta">
+        <img src="{% static 'images/posvice.svg' %}" class="logo" />
+        <img src="{% static 'images/review-stars.svg' %}" class="rating" />
+      </div>
+    </div>
+    <div class="testimonial-single">
+      <h4>“Thanks to the Brandpulsar team, we have found everything we wanted in our domain name; it’s memorable,
+        short, and
+        unique!”</h4>
+      <div class="meta">
+        <img src="{% static 'images/gygzy.svg' %}" class="logo" />
+        <img src="{% static 'images/review-stars.svg' %}" class="rating" />
+      </div>
+    </div>
+    <div class="testimonial-single">
+      <h4>“Thanks to Brandpulsar, we have found a descriptive domain and got massive organic traffic flowing into our
+        website.”</h4>
+      <div class="meta">
+        <img src="{% static 'images/slr.svg' %}" class="logo" />
+        <img src="{% static 'images/review-stars.svg' %}" class="rating" />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/utils/Draggable.min.js"></script>
+<script src="{% static 'js/how-it-works-bg.js' %}" type="text/javascript"></script>
+{% endblock %}

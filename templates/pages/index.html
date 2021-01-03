@@ -1,0 +1,349 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock meta %} {% block content %} {% load static %}
+
+<section class="header bg-standard">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <h1 class="title">You have the ideas, we have the domains.</h1>
+        <p class="text-center white">
+          Browse through a massive selection of names and find your brand!
+        </p>
+        <div class="ui-widget">
+          <div class="input-group mt-3">
+            <input type="text" class="form-control" placeholder="Search for industries or tags" id="search"
+              name="search" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <a href="{% url 'main:domains' %}" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;"
+                class="btn-green btn-md" id="button-addon2">Button</a>
+            </div>
+          </div>
+          <ul id="search-results"></ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section products">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">Featured Domain Names</h2>
+      </div>
+    </div>
+    <div class="row mb-5 mt-5">
+      <div class="featured-domains">
+        {% for domain in domains %}
+        <a href="{% url 'main:domain-detail' domain.slug %}">
+          <div class="featured-domain">
+            <img src="{{ domain.thumbnail_image.url }}" />
+            <div class="product-meta">
+              <h5>{{ domain.name }}.{{ domain.extension }}</h5>
+              <h6 style="margin: 0px;">$ {{ domain.price }}</h6>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <a href="{% url 'main:domains' %}" class="link">
+          See All Domains
+          <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="left-figure">
+    <img src="{% static 'images/1.png' %}" alt="Brandpulsar" />
+  </div>
+</section>
+<section class="section bg-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">What We Offer</h2>
+      </div>
+    </div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+          <h4>Premium Names</h4>
+          <p>
+            Browse and select one of the most attractive domain names from our massive selection. We are adding dozens
+            of premium
+            domain names every day.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+          <h4>Affordable Prices</h4>
+          <p>
+            With hundreds of affordable domain names, there is no reason to break the bank. Save money on the domain
+            name purchase
+            for your future investments.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+          <h4>Quick Transfer</h4>
+          <p>
+            As soon as you make a purchase, we start transferring your domain. You will immediately get an email about
+            your
+            successful purchase and the next steps.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cta-three">
+          <div class="content">
+            <h2>Stand out with your domain!</h2>
+            <a href="{% url 'main:domains' %}" class="btn-green btn-md btn-arrow"><span>Explore
+                domains</span>
+              <img src="{% static 'images/next-btn.svg' %}" /></a>
+          </div>
+          <div class="image">
+            <img src="{% static 'images/cta-image.png' %}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-sm-12 text-center">
+        <h2>Featured Industries</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="featured-industries">
+        {% for industry in industries %}
+        <a href="{% url 'main:industry-detail' industry.slug %}">
+          <div class="featured-industry text-center">
+            {% if industry.icon %}
+            <img src="{{ industry.icon.url }}" />
+            {% else %}
+            <img src="{% static 'images/startup-in.svg' %}" />
+            {% endif %}
+            <h5>{{ industry.name }}</h5>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <a href="{% url 'main:industries' %}" class="link">
+          See All Industries
+          <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2>Recent Clients</h2>
+        <p>
+          Check out our proudest customers with astonishing domain names. Thanks to our skilled graphic designers and
+          brand
+          experts, our customers enjoy catchy domain names with fantastic designs.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center mb-5 mt-5">
+      <!-- Swiper -->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://webzool.io">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/webzool-t-01.svg' %}" alt="Webzool" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://webzool.io">
+                  <h5>webzool.io</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://posvice.com/">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/posvice-01.svg' %}" alt="Webzool" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://posvice.com/">
+                  <h5>posvice.com</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://paymentprocessing101.com/">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/pp101-01.svg' %}" alt="Webzool" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://paymentprocessing101.com/">
+                  <h5>paymentprocessing101.com</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://gygzy.com/">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/gygzy-01.svg' %}" alt="Gygzy" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://gygzy.com/">
+                  <h5>gygzy.com</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://topslotreviews.com/">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/tsr-01.png' %}" alt="Topslotreviews" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://topslotreviews.com/">
+                  <h5>topslotreviews.com</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="domain position-relative">
+              <div class="position-absolute status-box">sold</div>
+              <a href="https://studentloansresolved.com/">
+                <div class="domain-image-container">
+                  <img src="{% static 'images/slr-01.svg' %}" alt="Studentloansresolved" class="domain-image" />
+                </div>
+              </a>
+              <div class="hit-info-container">
+                <a href="https://studentloansresolved.com/">
+                  <h5>studentloansresolved.com</h5>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cta-two">
+          <div class="content">
+            <h2 style="font-weight: 800;">Your success story starts right here.</h2>
+            <p>Find your great domain.</p>
+          </div>
+          <div class="button">
+            <a href="{% url 'main:domains' %}" class="btn-purple btn-lg"><span>Explore Domains</span>
+              <img src="{% static 'images/next-btn.svg' %}" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".swiper-container", {
+    slidesPerView: "auto",
+    loop: true,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 2000,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is >= 480px
+      480: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      // when window width is >= 640px
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 50,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    },
+  });
+</script>
+{% endblock %}

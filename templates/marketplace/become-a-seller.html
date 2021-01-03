@@ -1,0 +1,193 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="third-bg section" style="margin-bottom: -1px;">
+    <div class="container container-l">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 style="font-size: 60px;font-weight: 800;color: #fff;">Become a seller</h1>
+                <p class="lead" style="color: #fff;">The listed companies are some of our proudest clients. Thanks to
+                    our team of
+                    professional
+                    graphic
+                    designers, we have provided these. After a successful purchase, we will quickly transfer the domain
+                    to
+                    your preferred account.
+                </p>
+                <p class="lead" style="color: #fff;">Already have a seller account? Welcome back. <a
+                        href="{% url 'users:login-view' %}">Log in</a></p>
+            </div>
+            <div class="col-md-5">
+                <div class="form-box">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% endif %}
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="text" name="name" id="id_name" required />
+                                <label for="name">First name</label>
+                            </div>
+                            <div class="input-box col">
+                                <input type="text" name="surname" id="id_surname" required />
+                                <label for="surname">Last name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="email" name="email" id="id_email" required />
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="number" name="phone" id="id_phone" required />
+                                <label for="phone">Phone</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="password" name="password1" id="id_password1" required />
+                                <label for="password1">Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="password" name="password2" id="id_password2" required />
+                                <label for="password2">Password confirmation</label>
+                            </div>
+                        </div>
+                        <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                            <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By checking
+                            this box, I agree
+                            that
+                            brandpulsar.com may
+                            contact me from time to time at the email address above to tell me about its
+                            services.
+                        </p>
+                        <input type="submit" class="btn-green btn-md" value="Get seller account" />
+                        <p style="color: #0C1142;text-align: center;font-size: 10px;line-height: 18px">By submitting
+                            this form I have read
+                            and acknowledged the <a href="#">Privacy
+                                Policy</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container container-l">
+        <div class="row pb-5">
+            <div class="col-sm-12 text-center">
+                <h2>Features</h2>
+                <p>
+                    Provide your details and purchase your domain through our secure
+                    check-out process.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="feature-box-one">
+                    <span class="icon-box">
+                        <img src="{% static 'images/dashboard.svg' %}" />
+                    </span>
+                    <h5>Personal seller dashboard</h5>
+                    <p>The listed companies are some of our proudest clients. Thanks to our team of professional graphic
+                        designers, we have provided these.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box-one">
+                    <span class="icon-box">
+                        <img src="{% static 'images/analytics.svg' %}" />
+                    </span>
+                    <h5>Seller analytics</h5>
+                    <p>The listed companies are some of our proudest clients. Thanks to our team of professional graphic
+                        designers, we have provided these.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box-one">
+                    <span class="icon-box">
+                        <img src="{% static 'images/options.svg' %}" />
+                    </span>
+                    <h5>Featuring options</h5>
+                    <p>The listed companies are some of our proudest clients. Thanks to our team of professional graphic
+                        designers, we have provided these.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section" style="padding: 0px 0px 100px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" style="display: flex;flex-direction: column;justify-content: space-between;">
+                <div class="how-it-works-box">
+                    <div class="icon-box" style="background-color: #c0a9f4;">
+                        <img src="{% static 'images/select.svg' %}" />
+                    </div>
+                    <div class="content">
+                        <h4>$10 listing and logo design</h4>
+                        <p>
+                            Provide your details and purchase your domain through our secure
+                            check-out process.
+                        </p>
+                    </div>
+                </div>
+                <div class="how-it-works-box">
+                    <div class="icon-box" style="background-color: #ffd3c0;">
+                        <img src="{% static 'images/purchase.svg' %}" />
+                    </div>
+                    <div class="content">
+                        <h4>10% comission or $100</h4>
+                        <p>
+                            Provide your details and purchase your domain through our secure
+                            check-out process.
+                        </p>
+                    </div>
+                </div>
+                <div class="how-it-works-box">
+                    <div class="icon-box" style="background-color: #aed5fd;">
+                        <img src="{% static 'images/transfer.svg' %}" />
+                    </div>
+                    <div class="content">
+                        <h4>Secure and Instant transfer</h4>
+                        <p>
+                            Provide your details and purchase your domain through our secure
+                            check-out process.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

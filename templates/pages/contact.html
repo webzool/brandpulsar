@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>Brandpulsar | Contact Us</title>
+<meta name="description"
+    content="Get in touch with us now! You can either call us directly or send us a message and we will reach out to you to discuss your domain goals." />
+<meta property="og:title" content="Brandpulsar | Contact Us" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://brandpulsar.com/contact/" />
+<meta property="og:image" content="https://brandpulsar.com/static/images/brandpulsar-og.png" />
+<meta property="og:description"
+    content="Get in touch with us now! You can either call us directly or send us a message and we will reach out to you to discuss your domain goals." />
+<meta property="og:site_name" content="Brandpulsar" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% block content %}
+{% load static %}
+
+<section class="section contact-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-white mb-5">Get in touch</h1>
+                <div class="form-box">
+                    <h5>We’re happy to answer your questions and respond to your requests or business proposals</h5>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="text" name="first_name" id="id_first_name" required />
+                                <label for="id_first_name">First name</label>
+                            </div>
+                            <div class="input-box col">
+                                <input type="text" name="last_name" id="id_last_name" required />
+                                <label for="id_last_name">Last name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="email" name="email" id="id_email" required />
+                                <label for="id_email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <input type="number" name="phone" id="id_phone" required />
+                                <label for="id_phone">Phone</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box col">
+                                <textarea name="message" id="id_message" required></textarea>
+                                <label for="id_message">Message</label>
+                            </div>
+                        </div>
+                        <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                            <input type="checkbox" style="width: auto;margin-right: 5px;margin-top: 5px;" />By checking
+                            this box, I agree
+                            that
+                            brandpulsar.com may
+                            contact me from time to time at the email address above to tell me about its
+                            services.
+                        </p>
+                        <input type="submit" class="btn-green btn-md" value="Send message" />
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-info">
+                    <ul>
+                        <li class="email">
+                            <h3>Drop Us an Email</h3>
+                            <p>sales@brandpulsar.com</p>
+                        </li>
+                        <li class="faq">
+                            <h3>Maybe we already have an answer</h3>
+                            <a href="{% url 'main:faq' %}">
+                                <p>Frequently Asked Questions</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

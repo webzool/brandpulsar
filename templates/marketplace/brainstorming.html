@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet">
+
+{% endblock meta %}
+{% block content %}
+{% load static %}
+<style>
+    .hit-info-container,
+    .status-box {
+        display: none;
+    }
+
+    .domain-image-container {
+        height: 100px;
+    }
+</style>
+
+<section class="section bg-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <h1 class="text-center title mb-5">Brainstorming Tool</h1>
+                <form>
+                    <div class="brainstorming-field-box">
+                        <input type="text" name="word" placeholder="Keyword" id="id_word" required>
+                        <div>
+                            <select name="industry" multiple id="id_industry">
+                                {% for industry in industries  %}
+                                <option value="{{industry.pk}}">{{industry}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <span id="submit-word" class="btn-green btn-md">
+                            Search
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="brainstorming_results" class="row">
+
+                </div>
+            </div>
+            <div id="related-words-container" class="col-md-4">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+
+<script src="{% static 'js/brainstorming.js' %}"></script>
+<script>
+    new SlimSelect({
+        placeholder: 'Select Industry',
+        select: '#id_industry'
+    })
+</script>
+{% endblock %}

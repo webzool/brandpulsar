@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block meta %}
+<title>Brandpulsar - Domain Setup</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="profile-header-section" style="padding: 100px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-white">Setup {{ domain }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="setup-content">
+                    <div class="step-1">
+                        <h4>Setup Instructions</h4>
+                        <p>Brandpulsar requires that you verify your domain before it can be put on sale. In order to
+                            verify your domain, you will
+                            need to edit your DNS records and add the TXT record. Don’t worry tho, it’s easy to do and
+                            we’ll guide you through the
+                            steps:</p>
+                        <ol>
+                            <li>Sign in to your domain registrar (domain registrar is where you manage your domain; it
+                                can be Domain.com, Godaddy,
+                                Hover, or any other domain registrar)</li>
+                            <li>Open DNS management page</li>
+                            <li>Next, you should create a TXT record in your DNS with a title of <span
+                                    class="mono">brandpulsar-verification</span>.</li>
+                            <li>The hostname should be @ or {{domain}} for the text record you add.</li>
+                            <li>Save the TXT record.</li>
+                            <li>Login to your Brandpulsar Account >> Dashboard >> Domain Setup Page and Click on Verify.
+                            </li>
+                        </ol>
+                        <div class="mono mb-5">
+                            <p><strong>Note:</strong></p>
+                            <p>Keep in mind that it can take from a few minutes to up to 3
+                                hours to see the saved TXT record</p>
+                        </div>
+                        <a href="#" id="check_domain" data-name="{{domain}}" class="btn-purple btn-md"
+                            style="display: flex;width: 240px;align-items: center;justify-content: center;">Check</a>
+                    </div>
+
+                    <div class="step-2">
+                        <h6 class="mt-4">Logo creation</h6>
+                        <p>Our designer <span>Elmar Aliyev</span> will create a logo for your domain. It will take up to
+                            7 days.
+                            You can leave a message below to your designer</p>
+                        <form>
+                            <textarea>
+
+                                                                        </textarea>
+                            <input type="submut" class="btn-green btn-md" value="Leave message"
+                                style="text-align: center;" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/setup.js' %}"></script>
+{% endblock %}

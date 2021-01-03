@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% block content %}
+{% load static %}
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center mb-5">Payment History</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Payment status</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for payment in payments %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{payment.created_at | date:" d M Y"}}</td>
+                            <td>{{payment.description}}</td>
+                            <td><span class="status">Completed</span></td>
+                            <td>{{payment.get_method_display}}</td>
+                            <td>${{payment.amount}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

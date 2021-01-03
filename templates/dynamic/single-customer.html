@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="single-customer-header">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <h1>
+          {{ customer.name }}
+        </h1>
+        <p>
+          {{ customer.description }}
+        </p>
+        <div class="customer-details">
+          <div>
+            <img src="{% static 'images/icon-mapMarker.svg' %}" />
+            <span>{{ customer.location }}</span>
+          </div>
+          <div>
+            <img src="{% static 'images/icon-users.svg' %}" />
+            <span>{{ customer.employees }}</span>
+          </div>
+          <div>
+            <img src="{% static 'images/icon-industry.svg' %}" />
+            <span>{{ customer.industry }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider-bottom"></div>
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="customer-quote-container">
+          <img src="{% static 'images/triangles-2.svg' %}" class="triangles" />
+          <div class="customer-quote-content">
+            <h3>
+              {{ customer.quote }}
+            </h3>
+          </div>
+          <div class="customer-image">
+            <img src="{{ customer.thumbnail_image.url }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <div class="customer-story">
+          {{ customer.content|safe }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cta-five">
+          <div class="content">
+            <h2>Find your dream domain</h2>
+          </div>
+          <div class="image">
+            <a href="{% url 'main:domains' %}">
+              <img src="{% static 'images/next-circle.svg' %}" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

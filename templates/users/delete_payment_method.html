@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block meta %}
+<title>Brandpulsar | Delete Payment Method</title>
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+<section class="success-bg standard-bg">
+    <div class="container">
+        <div class="row mb-4 justify-content-center">
+            <div class="col-md-6 col-12">
+                <h2 class="text-white text-center pb-3">Delete Payment Method</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {{form.as_p}}
+                    <div class="form-group">
+                        <button class="btn btn-main" type="submit">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

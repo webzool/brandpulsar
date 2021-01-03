@@ -1,0 +1,20 @@
+<svg width="1920" height="1048" viewBox="0 0 1920 1048" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1048">
+<rect width="1920" height="1048" fill="white"/>
+</mask>
+<g mask="url(#mask0)">
+<rect width="1920" height="1048" fill="url(#paint0_angular)"/>
+<rect width="1920" height="1048" fill="url(#paint1_linear)"/>
+<path d="M2048.47 704.933L2408.67 63.0428C2417.11 48.7149 2417.11 34.387 2408.67 20.0591C2400.23 8.59674 2386.16 0 2372.09 0H1629.18C1622.05 0 1605.91 0 1605.91 0L1197 703.5C1197 703.5 1477.94 1168.48 1605.91 1407C1605.91 1407 1621.9 1407 1629.18 1407H2372.09C2386.16 1407 2400.23 1398.4 2408.67 1386.94C2417.11 1372.61 2417.11 1358.29 2408.67 1343.96L2048.47 704.933Z" fill="#00122C"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1138 475.655) rotate(-53.2646) scale(593.525 654.427)">
+<stop stop-color="#F0F3F7"/>
+<stop offset="1" stop-color="white"/>
+</radialGradient>
+<linearGradient id="paint1_linear" x1="1486" y1="5.91659e-05" x2="1463.43" y2="994.787" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1D3254"/>
+<stop offset="1" stop-color="#00122C"/>
+</linearGradient>
+</defs>
+</svg>

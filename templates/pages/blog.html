@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+{% endblock meta %}
+{% block content %}
+{% load static %}
+<section class="section-small">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-4">Blog</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in posts|slice:":1" %}
+                <a href="{% url 'main:blog-post' post.slug %}">
+                    <article class="new blog-post">
+                        <span>New</span>
+                        <div class="post-info">
+                            <p class="post-category">{{ post.category.title }}</p>
+                            <h2>{{ post.title }}</h2>
+                            <p class="post-author">{{ post.author.first_name }} {{ post.author.last_name }} |
+                                {{ post.date_created|date:"m.d.Y" }}</p>
+                        </div>
+                        <div class="post-square"></div>
+                        <img src="{{ post.thumbnail_image.url }}" alt="{{ post.title }}" class='post-image' />
+                    </article>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <ul class="small-blog-list">
+                    {% for post in posts|slice:"1:5" %}
+                    <li>
+                        <a href="{% url 'main:blog-post' post.slug %}">
+                            <img src="{{ post.thumbnail_image.url }}" alt="{{ post.title }}" />
+                            <div class="small-blog-content">
+                                <p class="post-category">{{ post.category.title }}</p>
+                                <h5>{{ post.title }}</h5>
+                                <p class="post-author">{{ post.author.first_name }} {{ post.author.last_name }} |
+                                    {{ post.date_created|date:"m.d.Y" }}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-small bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Swiper -->
+                <div class="swiper-container categories-slider">
+                    <div class="slider-actions">
+                        <h4>Categories</h4>
+                        <div class="slider-arrows">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                    <div class="swiper-wrapper">
+                        {% for category in categories %}
+                        <div class="swiper-slide category-box">
+                            <a href="{% url 'main:blog-category' category.slug %}">
+                                <h6>{{ category.title }}</h6>
+                                <p>{{ category.description }}</p>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-small">
+    <div class="container">
+        <div class="row">
+            {% for post in posts|slice:"5:" %}
+            <div class="col-md-4 mb-5">
+                <a href="{% url 'main:blog-post' post.slug %}">
+                    <article class="blog-post">
+                        <div class="post-info">
+                            <p class="post-category">{{ post.category.title }}</p>
+                            <h5>{{ post.title }}</h5>
+                            <p class="post-author">{{ post.author.first_name }} {{ post.author.last_name }} |
+                                {{ post.date_created|date:"m.d.Y" }}</p>
+                        </div>
+                        <div class="post-square"></div>
+                        <img src="{{ post.thumbnail_image.url }}" alt="{{ post.title }}" class='post-image' />
+                    </article>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if posts.has_previous %}
+                    <a href="?page=1">
+                        <img src="{% static 'images/first.svg' %}" />
+                    </a>
+                    <a href="?page={{ posts.previous_page_number }}">
+                        <img src="{% static 'images/previous.svg' %}" />
+                    </a>
+                    {% endif %}
+
+                    <span class="current">
+                        {{ posts.number }} of {{ posts.paginator.num_pages }}
+                    </span>
+
+                    {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">
+                        <img src="{% static 'images/next.svg' %}" />
+                    </a>
+                    <a href="?page={{ posts.paginator.num_pages }}">
+                        <img src="{% static 'images/last.svg' %}" />
+                    </a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            // when window width is >= 320px
+            320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: 20
+            },
+            // when window width is >= 480px
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            // when window width is >= 640px
+            640: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: 40
+            }
+        }
+    });
+    $(".category-box").each(function () {
+        var hue = 'rgb(' + (Math.floor((256 - 199) * Math.random()) + 200) + ',' + (Math.floor((256 - 199) * Math.random()) + 200) + ',' + (Math.floor((256 - 199) * Math.random()) + 200) + ')';
+        $(this).css("background-color", hue);
+    });
+</script>
+{% endblock %}

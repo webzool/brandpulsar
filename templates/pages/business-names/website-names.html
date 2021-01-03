@@ -1,0 +1,297 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<style>
+    .notification {
+        display: none !important;
+    }
+
+    .header-nav {
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }
+</style>
+<section class="business-name-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-9 text-center">
+                <h1>Website Names</h1>
+                <p class="mb-4">
+                    Looking for a website name? Check our Massive Selection of Great Domain Names
+                </p>
+                <a href="{% url 'main:domains' %}" class="btn-green btn-md"><span>Go To
+                        Domains</span>
+                    <img src="{% static 'images/next-btn.svg' %}" /></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="related-domains">
+        {% for domain in domains %}
+        <a href="{% url 'main:domain-detail' domain.slug %}">
+            <div class="related-domain-single">
+                <div class="related-domain-image">
+                    <img src="{{ domain.thumbnail_image.url }}" />
+                </div>
+                <div class="related-domain-meta">
+                    <h5>{{ domain.name }}</h5>
+                    <h5>${{ domain.price }}</h5>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+<section class="section content">
+    <div class="container">
+        <div class="row vert-center justify-content-center">
+            <div class="col-md-6">
+                <h3>Website Name Mistakes</h3>
+                <p>
+                    The clients' first impressions should be the same as your brand identity whether it is fun,
+                    friendly, bold,
+                    professional, or out-of-box. However, tiny mistakes can ruin all the benefits of choosing the right
+                    website names. For
+                    example, it is not preferable to use numbers or symbols in the name as it is hard to guess the
+                    correct typing. It can
+                    also hurt your credibility. Plus, different words with similar pronunciations should be avoided as
+                    people will not know
+                    which one they should use to find your website. Lastly, check the grammar and correct spelling to
+                    avoid looking
+                    unprofessional.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/f.jpg' %}" style="max-height: 450px;margin: 0 auto;display: block;" />
+            </div>
+        </div>
+        <div class="row vert-center justify-content-center mb-5 mt-5">
+            <div class="col-md-6">
+                <img src="{% static 'images/Group-3.png' %}" />
+            </div>
+            <div class="col-md-6">
+                <h3>Should You Go Beyond '.com'?</h3>
+                <p>
+                    If you are getting your first website, you can be confused about which extensions (.com .net .io) to
+                    choose. Generally,
+                    people trust sites with popular extensions, such as .com. Besides, companies might look more
+                    professional if they use
+                    common top-level domains. Such website names are scarce, as many people attempt to get domains with
+                    popular extensions.
+                    Therefore, you can opt for unique extensions such as .world or .africa. These types of extensions
+                    allow for flexibility
+                    and let you generate a creative image for your business.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+        </div>
+        <div class="row mt-5 vert-center justify-content-center">
+            <div class="col-md-6">
+                <h3>Website Name and Domain Name</h3>
+                <p>
+                    It will not be wrong to say that your domain name should be the website name. Sure, you can choose a
+                    different website
+                    name. However, in this case, people who type the domain name will face a completely different
+                    website name, which will
+                    create confusion and suspicious attitudes toward the site. Hence, you need to make your website name
+                    the same with the
+                    domain name. Only if you could not get the domain name you wish and adjust it, you can use the
+                    preferred name for the
+                    website. Yet, the difference should still be tiny.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/Group-4.png' %}" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section dark-content bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Highly-Effective Website Names</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="subtitle">
+                    If you are confused about how to choose a great website name, here are a few strategies. First, you
+                    can take a creative
+                    approach. Names that did not exist before and had no meaning for the visitors are becoming more
+                    popular because they can
+                    be short and easy to pronounce. For such names, the emotions that they generate plays a huge role.
+                    Check the power of
+                    the letter and generate short names that create a desirable image.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <img src="{% static 'images/social-commerce.jpg' %}" />
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <p>
+                    Alternatively, you can utilize a descriptive method in your decision-making process. Descriptive
+                    website names are those
+                    that explain to people what the site is about. The purpose of your business, core values, main
+                    benefits - all can be
+                    included in such names. As the name communicates a meaningful message, it is powerful in attracting
+                    new visitors. For
+                    example, people looking for affordable products can prefer website names with a 'cheap' word.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    If you want to create a name that will boost your position in search rankings, you can take an
+                    SEO-approach. Such
+                    website names include the keywords that people use when they are looking for similar products or
+                    services. For instance,
+                    using keywords like 'home,' 'remodel,' or 'renovation' in the website name can boost the search
+                    rankings of home
+                    renovation services. Names with keywords can be a little hard to find, but you can get huge
+                    benefits.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    With so many options for naming, it shouldn’t get overwhelming. No matter which approach you take,
+                    it is better to check
+                    the name's effectiveness among potential clients. Try to get their feedback on how your website or
+                    domain name makes
+                    people feel. Plus, such a feedback receiving process can generate new ideas by the comments and
+                    advice of the
+                    prospective customers.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-grey">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+                    <h4>Visitor Retention</h4>
+                    <p>
+                        Memorable and catchy website names can get the attention of visitors and make them return for
+                        more.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+                    <h4>User Guidance</h4>
+                    <p>
+                        Your website name will signal your site's use and purpose, which is an effective<br> marketing
+                        tactic.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+                    <h4>Trust</h4>
+                    <p>
+                        Having a well-thought-out and a clean domain name will signal your trustworthiness and
+                        credibility.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cta-three">
+                    <div class="content">
+                        <h2>Finding a Powerful Website Name has never been Easier</h2>
+                        <a href="{% url 'users:register-view' %}" class="btn-green btn-md"><span>Sign Up Now</span>
+                            <img src="{% static 'images/next-btn.svg' %}" /></a>
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'images/cta-image.png' %}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-12 text-center">
+                <h2>Featured Industries</h2>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="featured-industries">
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/startup-in.svg' %}" />
+                    <h5>Startup</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/e-commerce-in.svg' %}" />
+                    <h5>E commerce</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/business-in.svg' %}" />
+                    <h5>Business</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/accounting-in.svg' %}" />
+                    <h5>Accounting</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/digital-marketing-in.svg' %}" />
+                    <h5>Digital Marketing</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'main:industries' %}" class="link">
+                    See All Industries
+                    <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

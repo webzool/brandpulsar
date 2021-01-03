@@ -1,0 +1,150 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="profile-header-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="text-white">Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section dashboard bg-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="profile-box row">
+          <div class="col-md-3 info">
+            <div class="profile">
+              <div class="profile-wrapper">
+                <img
+                  src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %} {% static 'images/avatar-default.svg' %} {% endif %}"
+                  class="profile-avatar" />
+                <div class="profile-details">
+                  <h2 style="display: flex;align-items: center;justify-content: space-between;">{{ user.name }}
+                    {{ user.surname }} <a href="{% url 'users:user-edit-view' %}"><img style="width: 15px;"
+                        src="{% static 'images/edit.svg' %}"></a>
+                  </h2>
+                  <div class="profile-details-meta">
+                    <div class="location">
+                      <img src="{% static 'images/mail-2.svg' %}" />{{ user.email }}
+                    </div>
+                    <div class="date">
+                      <img src="{% static 'images/calendar.svg' %}" />
+                      {{ user.date_joined|date:"m.d.Y" }}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <form method="POST" action="{% url 'main:create-customer-portal-session' %}">
+                <input type="submit" value="Manage billing" class="btn-purple btn-sm mt-4"
+                  style="color: #fff!important;" />
+              </form>
+            </div>
+
+            <div class="dashboard-details">
+              <div class="finance">
+                <h5>Statistics</h5>
+                <ul>
+                  <li><span>Total domains</span><span>{{request.user.domains.count}}</span></li>
+                  <li><span>Total value of domains</span><span>$ {{request.user.total_domain_values}}</span></li>
+                  <li><span>Number of sales</span><span>{{request.user.sold_domain_count}}</span></li>
+                  <li><span>Total earned money</span><span>$ {{request.user.total_earned}}</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 domains-container">
+            <div class="domains-header">
+              <h3>Domains <span>({{user.domains.all|length}} domains)</span></h3>
+              <a href="{% url 'marketplace:create-domain' %}" class="btn-purple btn-sm">Add new</a>
+            </div>
+
+            <div class="domains-list">
+              {% if user.domains.all|length == 0 %}
+              <h4>You do not have any domains</h4>
+              {% else %}
+              <form class="d-flex">
+                <select name="" id="filter_options" class="form-control">
+                  <option disabled>Filter by:</option>
+                  <option selected value="all">All domains</option>
+                  <option value="listed">Active (Currently listing)</option>
+                  <option value="pending">Pending (Waiting for the listing)</option>
+                  <option value="available">Available (Not purchased)</option>
+                  <option value="sold">Sold</option>
+                  <option value="featured">Featured</option>
+                </select>
+              </form>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Viewed</th>
+                    <th scope="col">Price</th>
+
+                    <th scope="col">Favorite</th>
+                    <th scope="col" style="display: flex;align-items: center;justify-content: space-between;">
+                      Featured
+                      <a href="#" class="btn-tooltip" data-toggle="tooltip" data-placement="left"
+                        title="Featured domains are being listed on top positions of all listing results which is proven to help sellers get their domains sold much more quicker than the regular listings. The fee for making a domain featured is $10/month."><img
+                          src="{% static 'images/info.svg' %}" /></a>
+                    </th>
+                    <th scope="col">Created</th>
+                    <th scope="col">
+                      Listing
+                      <a href="#" class="btn-tooltip" data-toggle="tooltip" data-placement="left" title="Verify domain: This button means you need to verify your domain by the method we suggest and clicking the button leads you to the verification screen.
+Yellow icon: This sign means you have done your part. Now we need to create a logo for you and list your domain.
+Green icon: This sign means your domain is listed on our website to sale!"><img
+                          src="{% static 'images/info.svg' %}" /></a>
+                    </th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="domains_table">
+
+                </tbody>
+              </table>
+              <nav aria-label="Page pagination">
+                <ul class="pagination"></ul>
+              </nav>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="https://js.stripe.com/v3/" type="text/javascript"></script>
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+  const pub_key = "{{ pub_key }}";
+</script>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock extra_js %}

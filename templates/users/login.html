@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block meta %}
+<title>Brandpulsar | Login</title>
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+<style>
+    .header-nav,
+    .footer {
+        display: none;
+    }
+</style>
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="auth-container">
+                    <a href="{% url 'main:index' %}" class="auth-badge">
+                        <img src="{% static 'images/cosmic-icon-tr.svg' %}" />
+                    </a>
+                    <div class="auth-image">
+
+                    </div>
+                    <div class="auth-content">
+                        <a href="{% url 'main:index' %}" class="purple-back-btn mb-3"><img
+                                src="{% static 'images/left-arrow-2.svg' %}">Back to home
+                            page</a>
+                        <h1 class="pb-3">Login to your account</h1>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="email" name="username" id="modal-email" required />
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-box col">
+                                    <input type="password" name="password" id="modal-password" required />
+                                    <label for="password1">Password</label>
+                                </div>
+                            </div>
+                            <p class="d-flex mb-2" style="color: #0C1142;font-size: 10px;line-height: 18px">
+                                <input type="checkbox" name="remember_me" id="modal-remember_me"
+                                    style="width: auto;margin-right: 5px;margin-top: 5px;" />Remember me
+                            </p>
+
+                            <div class="form-group">
+                                <button class="btn-green btn-md" style="width: 100%;" type="submit">Log in</button>
+                            </div>
+                        </form>
+                        <p style="display: flex;align-items: center;justify-content: space-between;">
+                            <a href="{% url 'users:register-view' %}">Not a member yet?</a>
+                            <a href="{% url 'users:password-reset' %}">Forget Password?</a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

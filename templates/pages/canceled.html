@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+
+<section class="success-bg standard-bg">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <h1 class="white title text-center">Canceled</h1>
+                <p class="white text-center">If you changed your mind, check out other domains.</p>
+                <a class="btn-green btn-md" style="display: table;margin: 20px auto;"
+                    href="{% url 'main:domains' %}">Check
+                    out other
+                    domains</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

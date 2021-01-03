@@ -1,0 +1,193 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<section class="customers-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="title">
+          We pride ourselves with<br><span class="purple">98% customer satisfaction</span> rates.
+          Discover our proudest clients and see what they have to say.
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey" style="padding: 50px 0px 100px 0px;">
+  <div class="container">
+    <div class="row">
+      {% for customer in customers %}
+      <div class="col-md-4">
+        <div class="customer-box">
+          <img src="{{ customer.thumbnail_image.url }}" />
+          <div class="customer-description">
+            <p>{{ customer.description }}</p>
+            <a href="{% url 'main:single-customer' customer.slug%}" class="customer-btn">
+              <div class="line"></div>
+              <span>Read more</span>
+              <img src="{% static 'images/arrow-m.svg' %}" />
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>Check Our Client Reviews</h2>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="user-review-box">
+          <div class="user-review-info">
+            <img src="{% static 'images/user-1.jpg' %}" />
+            <div class="user-details">
+              <span class="name">Eddie Freeman</span><br />
+              <span class="date-location">Software Developer</span>
+            </div>
+          </div>
+          <div class="user-review-description">
+            <p>
+              "After we started working with Brandpulsar, we realized that getting a domain name can actually be super
+              easy and
+              absolutely inexpensive."
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="user-review-box">
+          <div class="user-review-info">
+            <img src="{% static 'images/user-2.jpg' %}" />
+            <div class="user-details">
+              <span class="name">Letitia Stewart</span><br />
+              <span class="date-location">Graphic Designer</span>
+            </div>
+          </div>
+          <div class="user-review-description">
+            <p>
+              "When we were struggling to come up with a great domain idea, Brandpulsar has saved the day and offered
+              an inspiring
+              name for our start-up."
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="user-review-box">
+          <div class="user-review-info">
+            <img src="{% static 'images/user-3.jpg' %}" />
+            <div class="user-details">
+              <span class="name">Alvin Bell</span><br />
+              <span class="date-location">Engineer</span>
+            </div>
+          </div>
+          <div class="user-review-description">
+            <p>
+              "Brandpulsar is not just another domain name provider. These guys are dedicated to delivering a
+              fantastic service and
+              reaching the highest level of our satisfaction."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-four">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>Reserve your corner in the digital universe</h2>
+        <p class="mb-4">
+          Our memorable domain names attract traffic, create a trusted brand image, ensure maximum visibility and the
+          best first
+          impression.
+        </p>
+        <a href="{% url 'main:domains' %}" class="btn-green btn-md"><span>Get Your Domain Name Now</span>
+          <img src="{% static 'images/next-btn.svg' %}" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="quote">
+          <div class="quote-content">
+            <h2>
+              We provide premium brand names for all kind of businesses and client satisfaction is what we work for.
+            </h2>
+
+          </div>
+          <div class="quote-image">
+            <img src="{% static 'images/team.jpg' %}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey map-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <h3>1000+</h3>
+        <h6>Premium brand names.</h6>
+        <p>We are adding more and more premium brand names every day.</p>
+      </div>
+      <div class="col-md-3">
+        <h3>200+</h3>
+        <h6>Already sold premium domains.</h6>
+        <p>Be the one among our satisfied customers.</p>
+      </div>
+      <div class="col-md-3">
+        <h3>3.5k+</h3>
+        <h6>Registered users.</h6>
+        <p>Users get to have a dashboard to sell their domains and get weekly updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row vert-center">
+      <div class="col-md-5">
+        <h2>Sell your domain on Brandpulsar</h2>
+        <p style="font-size: 20px; margin-bottom: 20px">
+          If you are looking to create a fresh brand specific to your industry, you have come to the right place. We
+          offer you a
+          full package of premium domains, stylish logos and modern design mock-ups.
+        </p>
+        <a href="#" class="btn-purple btn-md" style="margin: 20px 0px 0px 0px;"><span>Sign Up Now</span>
+          <img src="{% static 'images/next-btn.svg' %}" /></a>
+      </div>
+      <div class="col-md-5">
+        <img src="{% static 'images/brandpulsar-image.svg' %}" />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

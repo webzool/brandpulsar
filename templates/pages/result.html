@@ -1,0 +1,24 @@
+<div>
+    {% if domains.count > 0 %}
+
+        {% for domain in domains %}
+            <li class="autocomplete-item">
+                <a href="{% url 'main:domain-detail' domain.slug %}">
+                    <div class='domain-image-container'>
+                        <img src="{{ domain.thumbnail_image.url }}"
+                             alt="{{ domain.name }}" class='domain-image'/>
+                    </div>
+                    <div class="domain-info">
+                        <span class="name">{{ domain.name }}</span>
+                        <span class="price ml-auto"><span style="color: #6831e4;">$</span> {{ domain.price }}</span>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+
+    {% else %}
+
+{#        <li>None to show!</li>#}
+
+    {% endif %}
+</div>

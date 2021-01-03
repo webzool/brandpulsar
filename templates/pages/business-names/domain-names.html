@@ -1,0 +1,292 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<style>
+    .notification {
+        display: none !important;
+    }
+
+    .header-nav {
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }
+</style>
+<section class="business-name-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-9 text-center">
+                <h1>Domain Names</h1>
+                <p class="mb-4">
+                    Get access to hundreds of catchy and affordable domain names for your business.
+                </p>
+                <a href="{% url 'main:domains' %}" class="btn-green btn-md"><span>Go To
+                        Domains</span>
+                    <img src="{% static 'images/next-btn.svg' %}" /></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="related-domains">
+        {% for domain in domains %}
+        <a href="{% url 'main:domain-detail' domain.slug %}">
+            <div class="related-domain-single">
+                <div class="related-domain-image">
+                    <img src="{{ domain.thumbnail_image.url }}" />
+                </div>
+                <div class="related-domain-meta">
+                    <h5>{{ domain.name }}</h5>
+                    <h5>${{ domain.price }}</h5>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+<section class="section content">
+    <div class="container">
+        <div class="row vert-center justify-content-center">
+            <div class="col-md-6">
+                <h3>What You Need to Know About Domain Names</h3>
+                <p>
+                    Your domain name is the identity of your business; it is those few letters of the text that internet
+                    users type in the
+                    URL bar to find your website. Hence, when choosing a domain name, you need to make sure that people
+                    can easily remember,
+                    spell, and type it. In this short guide, we will be giving you advice on how to choose a great
+                    domain name for your
+                    business.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/f.jpg' %}" style="max-height: 450px;margin: 0 auto;display: block;" />
+            </div>
+        </div>
+        <div class="row vert-center justify-content-center mb-5 mt-5">
+            <div class="col-md-6">
+                <img src="{% static 'images/Group-3.png' %}" />
+            </div>
+            <div class="col-md-6">
+                <h3>Domain Names as Promotional Tools</h3>
+                <p>
+                    Did you know that domains can help you market your business? Creating separate domains can give you
+                    access to a broad
+                    base of customers and direct referral traffic from various sources. If you are thinking about a new
+                    marketing campaign
+                    for a specific audience or a new product, it can be useful to get extra domains for your business.
+                    In this way, you can
+                    design and use the website for testing out certain marketing strategies without risking to hurt the
+                    image of your
+                    business.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+        </div>
+        <div class="row mt-5 vert-center justify-content-center">
+            <div class="col-md-6">
+                <h3>Oh no… My Domain Name is Taken!</h3>
+                <p>
+                    There exist almost two billion websites. Your ideas have probably passed through the minds of others
+                    long before. Yet,
+                    there is no reason to be disappointed. Several techniques will enable you to enjoy your preferred
+                    domain names without
+                    changing it completely. One of the best strategies can be changing the extensions. Currently,
+                    creative extensions such
+                    as ‘.shop,’ ‘.store,’ or ‘.world,’ are catchy and allow room for creativity. Alternatively, you can
+                    change the name a
+                    little by adding industry type to the name such as retail, finance, or accounting. Adding
+                    adjectives, verbs, or articles
+                    can also be “name-saving.”
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/Group-4.png' %}" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section dark-content bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>How to Choose a Domain Name?</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="subtitle">
+                    Do not rush to decide on your domain name as it has a significant effect on your business’s
+                    performance. First, we would
+                    advise you to get common domain extensions such as ‘.com,’ ‘.net’ or ‘.org.’ Some people think that
+                    such extensions
+                    reflect the professionalism of the business. Yet, this advice is not a rule. It rather depends on
+                    your purpose. If you
+                    want to show that your website brings creativity, using unusual extensions can be a better decision.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <img src="{% static 'images/social-commerce.jpg' %}" />
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <p>
+                    Keep it simple—short, clean, and easily-identifiable. By short, we mean up to three words are
+                    desirable. By clean, we
+                    mean getting names without numbers or symbols. Some users can confuse whether they should type 10 or
+                    ‘ten,’ to access a
+                    website. If there is anything a little tricky, believe us, people will get confused. Also, choose a
+                    name that is easy to
+                    remember, type, and pronounce. You might not value the pronunciation, but people will not spread
+                    positive word-of-mouth
+                    for brands that they are afraid to mispronounce.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    Getting a domain name with keywords in it can be a good strategy to promote your business. Plus,
+                    such names can be
+                    SEO-friendly right out of the box. Search engine bots will be more likely to bring your website to
+                    the attention of the
+                    users. However, such names can be hard to get. Due to its positive SEO effects, many website owners
+                    attempt to get
+                    domain names with keywords. Hence, its accessibility can be questionable.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    When choosing a name, think long-term. You are not going to frequently change your domain name, as
+                    it is not desirable
+                    to prevent the access of existing users to your website, especially if you are building a brand.
+                    Therefore, the domain
+                    name you prefer should be relatable not only today, but also in the future.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-grey">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+                    <h4>First Impression</h4>
+                    <p>
+                        Create a positive attitude toward your brand with wisely-chosen and meaningful domain names.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+                    <h4>High Traffic</h4>
+                    <p>
+                        Adding keywords to your domain name can ensure a higher volume of users with<br> little effort.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+                    <h4>Defined Identity</h4>
+                    <p>
+                        Boost your brand identity and deliver valuable messages to your client base with brandable
+                        domains.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cta-three">
+                    <div class="content">
+                        <h2>Make a Difference with Your Domain</h2>
+                        <a href="{% url 'users:register-view' %}" class="btn-green btn-md"><span>Sign Up Now</span>
+                            <img src="{% static 'images/next-btn.svg' %}" /></a>
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'images/cta-image.png' %}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-12 text-center">
+                <h2>Featured Industries</h2>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="featured-industries">
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/startup-in.svg' %}" />
+                    <h5>Startup</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/e-commerce-in.svg' %}" />
+                    <h5>E commerce</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/business-in.svg' %}" />
+                    <h5>Business</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/accounting-in.svg' %}" />
+                    <h5>Accounting</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/digital-marketing-in.svg' %}" />
+                    <h5>Digital Marketing</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'main:industries' %}" class="link">
+                    See All Industries
+                    <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

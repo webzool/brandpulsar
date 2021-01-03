@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /success
+Disallow: /canceled
+Disallow: /create-session
+Disallow: /search
+Disallow: /ajax-scroll
+Disallow: /ajax-favorite
+Disallow: /search
+Disallow: /search

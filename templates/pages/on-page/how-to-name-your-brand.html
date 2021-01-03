@@ -1,0 +1,251 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<style>
+    .content ul {
+        list-style-type: disc;
+        padding-left: 50px;
+    }
+
+    .content ul li {
+        color: #0c1142;
+        line-height: 30px;
+        font-size: 15px;
+    }
+
+    .content ol li {
+        color: #010529;
+        font-weight: 500;
+    }
+
+    .content p {
+        margin-bottom: 20px;
+    }
+</style>
+<section class="section bg-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1 class="title">How to name your brand</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 content">
+                <p>Choosing the right name for your business is essential. It is one of the valuable assets that can
+                    bring immense benefits
+                    to your business. A name is a powerful tool, and it can indicate who leads the industry, which
+                    company is the most
+                    innovative or creative in the market. You should not underestimate what you can achieve with the
+                    proper name and invest
+                    much time and effort to choose the best one.
+                </p>
+                <p>Brands with catchy and ‘out-of-box’ names generate buzz among the people. Such buzz aids companies to
+                    stand out in the
+                    competition. Therefore, a common name has a high risk of making the business sound like every other
+                    competitor. In the
+                    worst case, the wrong name can backlash and create a negative attitude toward the brand. No worries
+                    tho; in this short
+                    guide, we will show you what goes into coming up with a fascinating domain name. Let’s dive into it!
+                </p>
+                <h3>Research</h3>
+                <p>Before delving into the effective strategies for naming, we need to remind you of the power of the
+                    research. We can
+                    provide countless naming options for your brand. However, the right name depends on the external and
+                    internal conditions
+                    your company faces. You need first to understand what the naming strategies of your main competitors
+                    are. Find an answer
+                    to questions like:
+                </p>
+                <ul>
+                    <li>Do your competitors use short names or long ones?</li>
+                    <li>Do they use descriptive or creative names?</li>
+                    <li>How do the names reflect their offerings, core values or benefits?</li>
+                    <li>How did the weak competitors name their brands?</li>
+                </ul>
+                <p>Besides, getting the recommendations from potential clients will ensure that you choose a name that
+                    they will like. You
+                    can make a small focus group interview or contact directly with the clients to get their opinions
+                    about existing brands:
+                </p>
+                <ul>
+                    <li>Do the existing clients favour naming strategies of your competitors?</li>
+                    <li>What does your potential client base think about your list of alternative names?</li>
+                </ul>
+                <p>Lastly, you need to be well-aware of your internal goals in naming. Think about your business. You
+                    can be an innovative
+                    soul in a long-established, traditional industry. Hence, following the strategies of your
+                    competitors would not make any
+                    sense. Your name should reflect the identity of your business:
+                </p>
+                <ul>
+                    <li>How do you want your clients to feel when they hear your brand name?</li>
+                    <li>Which basic emotions or personalities can fit your business?</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <div class="col-sm-12">
+                <div class="cta-two" style="box-shadow: 0 6px 25px 15px rgba(36, 37, 38, 0.08);">
+                    <div class="content">
+                        <h2 style="font-weight: 800;">Your success story starts right here.</h2>
+                        <p>Find your great domain.</p>
+                    </div>
+                    <div class="button">
+                        <a href="{% url 'main:domains' %}" class="btn-purple btn-lg"><span>Explore Domains</span>
+                            <img src="{% static 'images/next-btn.svg' %}" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 content">
+                <h3>Popular Naming Strategies</h3>
+                <p>There exist several techniques that help business owners to choose a successful brand name easily.
+                    These are general
+                    strategies that allow flexibility and adjustments. However, they all have different advantages and
+                    disadvantages
+                    depending on the industry type, target audience or the offerings of your business.
+                </p>
+                <ol>
+                    <li>Using the Names or Surnames of Owners</li>
+                    <p>Some companies skip all the hassle of decision making for the name, and use their surnames for
+                        the company. Such a
+                        method is, sure, straightforward and saves a lot of time and effort for the business owners. In
+                        fact, established
+                        companies with the founder’s or manager’s name create a professional look. However, for a
+                        start-up project, this method
+                        might not be the best one. The drawback of such naming is that it does not communicate a message
+                        to a customer when the
+                        name owner is not especially famous.
+                    </p>
+                    <li>Descriptive Names</li>
+                    <p>One of the most useful naming strategies is to come up with single or multiple words that
+                        describe the business. Such
+                        names signal what your business is all about. You can use your brand values, primary goals,
+                        service or product category,
+                        and industry type in the name. In this way, you will communicate a meaningful message to your
+                        customers. The
+                        disadvantage of this method is that it is too apparent. Descriptive names directly speak for the
+                        brand and leave no
+                        place for mysterious or intriguing feelings.
+                    </p>
+                    <li>Names with Hidden Meanings</li>
+                    <p>Speaking of intriguing people, you can choose a name with hidden meaning. This strategy is quite
+                        famous, and it involves
+                        finding ancient words or names in different languages which have a relatable sense. At first
+                        glance, your customers will
+                        not understand what your name means. However, if you explain the meaning of, for example, an
+                        ancient word in a way that
+                        is meaningful to your business, it can amaze your target audience. For instance, if your
+                        business requires creativity,
+                        you can find a word which is related to the creation, the beginning of life, or change.
+                    </p>
+                    <li>Making Up Names</li>
+                    <p>Another common strategy for naming a brand is creating new names that did not exist before. For
+                        example, Google has no
+                        other meaning besides being the company name. Such a technique has many advantages. First, for
+                        innovative and young
+                        businesses, making up new words signal their benefits. Second, finding a domain name or getting
+                        the legal rights for the
+                        name will be quite easy because you are the first one who came up with this word. The only
+                        downside of this technique is
+                        that people might not memorize or recall your name easily if you do not promote your brand
+                        heavily.
+                    </p>
+                    <li>Keyword- Approach</li>
+                    <p>This strategy is similar to descriptive naming as using a keyword will describe your business. By
+                        keyword, we mean a
+                        relatable word to your business. For example, your industry type - accounting, finance or
+                        marketing - can be in your
+                        name. Such a strategy makes potential clients instantly recognize your brand. Besides, when you
+                        get a domain name for
+                        your business, this technique can improve your position in an online environment. Currently,
+                        search engine algorithms
+                        value the keywords in the website names and mark them ‘relatable’ for similar queries. Hence,
+                        your brand can have a
+                        slight advantage over its competitors and get more online traffic with this keyword approach in
+                        naming.
+                    </p>
+                </ol>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-sm-12">
+                <div class="cta-five" style="margin-top: 0px;">
+                    <div class="content">
+                        <h3>Make your domain featured</h3>
+                        <p>By purchasing this product, you will acquire the ownership of this domain along with its logo
+                            and
+                            design concepts.</p>
+                    </div>
+
+                    <a href="{% url 'main:domains' %}" class="btn-green btn-lg"><span>Explore Domains</span>
+                        <img src="{% static 'images/next-btn.svg' %}" /></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 content">
+                <h3>Create a List</h3>
+                <p>You do not need to choose one of those strategies from the beginning. The most creative ideas emerge
+                    when you do not
+                    limit yourself. Use different techniques and write down all the names that come to your mind. Later,
+                    get the inputs from
+                    your competitor and customer analysis. Refine your ideas based on these inputs. Choose the name that
+                    is:
+                </p>
+                <ul>
+                    <li>Short- up to three words</li>
+                    <li>Easy to understand, type and pronounce</li>
+                    <li>Meaningful and relatable</li>
+                    <li>Creative, unique and catchy</li>
+                </ul>
+                <h3>Test the Name</h3>
+                <p>Before you finally choose the name, you need to test it. First, make sure that there are no legal
+                    barriers to getting
+                    the name. None would want to face legal charges after creating their brand. Second, check if the
+                    name is suitable for
+                    other mediums, such as your slogan, signature, and other design elements. Lastly, ask for the
+                    feedback of your potential
+                    clients. This process will help you understand how memorable and appealing is your brand name to the
+                    customers. Such
+                    feedback generation can be as simple as asking your existing clients on social media channels. If
+                    your business is new,
+                    you can also ask your friends or family members to evaluate the name. In short, their comments can
+                    lead to new ideas or
+                    aid you to adjust the name to the target audience.
+                </p>
+                <h3>… Use a Shortcut!</h3>
+                <p>If you cannot generate a name for your brand, we also provide a simple way. In Brandpulsar, we have
+                    a massive
+                    selection of domain names for all types of businesses. Just browse the list and choose the one you
+                    like the most!
+                    Whether you want a friendly, bold, professional-looking, exciting, fun or futuristic name, we have
+                    what you are looking
+                    for. Besides finding a suitable brand name, you will also ensure that you have the domain that
+                    matches with it.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

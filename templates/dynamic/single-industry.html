@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet">
+
+{% endblock meta %}
+{% block content %}
+{% load static %}
+<button type="button" class="mobile-filter-btn" data-toggle="modal" data-target="#mobileFilter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 14">
+        <path d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z" stroke="#fff" stroke-width="1.29" fill="none" fill-rule="evenodd"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    Filters
+</button>
+<div class="modal fade" id="mobileFilter" tabindex="-1" role="dialog" aria-labelledby="mobileFilterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered removemobil" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6>Sub Industries</h6>
+                <a href="{% url 'main:domains' %}" class="purple-back-btn"><img
+                        src="{% static 'images/left-arrow-2.svg' %}"> All
+                    domains</a>
+                <ul class="induestries mt-3">
+                    {% for child in industry.get_children %}
+                    <li>
+                        <a href="{% url 'main:industry-detail' child.slug %}">{{ child.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!-- <form class="filter-form pt-3">
+                    <label for="id_name">Contains:</label>
+                    <input type="text" name="name" class="contains" id="id_name" />
+                    <label for="id_price_gt">Price:</label>
+                    <input type="text" name="price_gt" class="price-max" id="id_price_gt" />
+                    <input type="text" name="price_lt" class="price-min" id="id_price_lt" />
+                    <label for="id_length_gt">Domain length (charaters):</label>
+                    <input type="text" name="length_gt" class="length-max" id="id_length_gt" />
+                    <input type="text" name="length_lt" class="length-min" id="id_length_lt" />
+                    <label for="id_syllable">Syllable count:</label>
+                    <input type="number" name="syllable" placeholder="Search by syllable count" class="contains"
+                        id="id_syllable" />
+                    <label for="id_tags">Tags:</label>
+                    <select name="" id="id_tags" multiple class="form-control">
+                        {% for tag in tags %}
+                        <option value="{{tag.pk}}" id="{{tag.pk}}" tag-name="{{tag.title}}">{{tag.title}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <p class="filter-btn">Filter</p>
+                </form> -->
+
+                {% comment %}
+                NOTE: Dear collegue, this html form breaks jQuery code due to duplicate html input IDs.
+                That is why, first form has been commented out. If it is necessary, please keep in mind to update
+                both JS functions and HTML input IDs. Arzu Hussein 25/08/20
+                {% endcomment %}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="listing-head">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-xl-10 col-md-12">
+                <div class="info">
+                    <div class="listing-details">
+                        <h1>{{ industry.name }}</h1>
+                        <p id="list-info"></p>
+                    </div>
+
+                    <form>
+                        <label for="sort-filter">Sort by:</label>
+                        <select name="" id="sort-filter" class="form-control">
+                            <!-- <option disabled selected>Sort by:</option> -->
+                            <option value="featured">Featured First</option>
+                            <option value="hottest">Hottest First</option>
+                            <option value="recently-added">Recently Added First</option>
+                            <option value="low-price">Price Increasing</option>
+                            <option value="high-price">Price Decreasing</option>
+                            <!-- <option value="least-recently-added">Least Recently Added</option> -->
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="domains">
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-md-2">
+                <div class="desktop-filter" style="height: 100%;">
+                    <div class="breadcrump">
+                        <ul>
+                            <li>Domains / </li>
+                            <li> {{ industry.name }}</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar" id="desktopFilter">
+                        <h6>Sub Industries</h6>
+                        <a href="{% url 'main:domains' %}" class="purple-back-btn"><img
+                                src="{% static 'images/left-arrow-2.svg' %}"> All
+                            domains</a>
+                        <ul class="induestries mt-3">
+                            {% for child in industry.get_children %}
+                            <li>
+                                <a href="{% url 'main:industry-detail' child.slug %}">{{ child.name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <form class="filter-form pt-3">
+                            <label for="id_name">Contains:</label>
+                            <input type="text" name="name" class="contains" id="id_name" />
+                            <label for="id_price_gt">Price:</label>
+                            <input type="text" name="price_gt" class="price-max" id="id_price_gt" />
+                            <input type="text" name="price_lt" class="price-min" id="id_price_lt" />
+                            <label for="id_length_gt">Domain length (charaters):</label>
+                            <input type="text" name="length_gt" class="length-max" id="id_length_gt" />
+                            <input type="text" name="length_lt" class="length-min" id="id_length_lt" />
+                            <label for="id_syllable">Syllable count:</label>
+                            <input type="number" name="syllable" class="contains" id="id_syllable" />
+                            <label for="id_tags">Tags:</label>
+                            <select name="" id="id_tags" multiple class="form-control">
+                                {% for tag in tags %}
+                                <option value="{{tag.pk}}" id="{{tag.pk}}" tag-name="{{tag.title}}">{{tag.title}}
+                                </option>
+                                {% endfor %}
+                            </select>
+
+                            <p class="filter-btn">Filter</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10 pt-3">
+                <div class="domaiajaxpast">
+                    <div id="domainRow" class="row"></div>
+                    <nav aria-label="Page pagination">
+                        <ul class="pagination"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+<script>
+    new SlimSelect({
+        select: '#id_tags',
+    })
+</script>
+<script>
+    const industry_id = {{ industry.pk }};
+    const industry_name = '{{ industry.name }}';
+</script>
+<script src="{% static 'js/domains.js' %}" type="text/javascript"></script>
+{% endblock %}

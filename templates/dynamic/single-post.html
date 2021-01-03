@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% block content %}
+{% load static %}
+<section class="section blog-post-bg" style="background-image: url({{ post.thumbnail_image.url }})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-md-12">
+                <p class="white">Written on {{ post.date_created|date:"m.d.Y" }}</p>
+                <h1 class="white mb-5">{{ post.title }}</h1>
+                <h6 class="white">{{ post.metadescription }}</h6>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section style="background-color: #f5f6f9;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-md-12">
+                <div class="post-body">
+                    <div class="post-domains">
+                        {% if post.tags %}
+                        {% for domain in domains %}
+                        <a href="{% url 'main:domain-detail' domain.slug %}">
+                            <img src="{{ domain.thumbnail_image.url }}"
+                                alt="{{ domain.name }}.{{ domain.extension }}" />
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="author-box">
+                        <div class="author-image">
+                            <img src="{{ post.author.picture.url }}" alt="{{ post.title }}" />
+                        </div>
+                        <div class="author-info">
+                            <h4>{{ post.author.first_name }} {{ post.author.last_name }}</h4>
+                            <span>{{ post.author.position }}</span>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    {{ post.content|safe }}
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cta-one">
+                    <div class="col-md-7">
+                        <h1>Your brand’s cosmic growth starts today.</h1>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">Keep On Reading</h1>
+                <p class="text-center mb-5">Other articles you might enjoy.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for post in post.get_related %}
+            <div class="col-md-4 mb-5">
+                <a href="{% url 'main:blog-post' post.slug %}">
+                    <article class="blog-post">
+                        <div class="post-info">
+                            <p class="post-category">{{ post.category.title }}</p>
+                            <h5>{{ post.title }}</h5>
+                            <p class="post-author">{{ post.author.first_name }} {{ post.author.last_name }}</p>
+                        </div>
+                        <div class="post-square"></div>
+                        <img src="{{ post.thumbnail_image.url }}" alt="{{ post.title }}" class='post-image' />
+                    </article>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

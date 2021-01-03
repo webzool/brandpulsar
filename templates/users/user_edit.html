@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Brandpulsar | Profile update: {{request.user.email}}</title>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<link rel="stylesheet" href="{% static 'css/profile_picture.css' %}">
+{% endblock meta %}
+
+{% block content %}
+
+<section class="profile-header-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-white">Account</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <section class="section bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="profile-box row">
+                        <div class="col-md-6 info">
+                            <div class="profile">
+                                <div class="profile-wrapper">
+                                    <div class="photo">
+                                        <input type="file" name="profile_picture" accept="image/*"
+                                            id="id_profile_picture">
+                                        <div class="photo__helper">
+                                            <div class="photo__frame photo__frame--circle">
+                                                <canvas {% if request.user.profile_picture %}
+                                                    style="background-image:url({{request.user.profile_picture.url}})"
+                                                    {% else %}
+                                                    style="background-image:url('../../static/images/avatar-default.svg')"
+                                                    {% endif %} class="photo__canvas"></canvas>
+                                                <div class="message is-empty">
+                                                    <p class="message--desktop">
+                                                        <img class="login-icon" src="{% static 'images/picture.svg' %}"
+                                                            alt="">
+                                                    </p>
+                                                    <p class="message--mobile">
+                                                        <img class="login-icon" src="{% static 'images/picture.svg' %}"
+                                                            alt="">
+                                                    </p>
+                                                </div>
+                                                <div class="message is-loading">
+                                                    <i class="fa fa-2x fa-spin fa-spinner"></i>
+                                                </div>
+                                                <div class="message is-dragover">
+                                                    <i class="fa fa-2x fa-cloud-upload"></i>
+                                                    <p>Drop your photo</p>
+                                                </div>
+                                                <div class="message is-wrong-file-type">
+                                                    <p>Only images allowed.</p>
+                                                    <p class="message--desktop">Drop your photo here or browse your
+                                                        computer.</p>
+                                                    <p class="message--mobile">Tap here to select your picture.</p>
+                                                </div>
+                                                <div class="message is-wrong-image-size">
+                                                    <p>Your photo must be larger than 350px.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-details">
+                                        <h2>{{  user.name }} {{ user.surname }}</h2>
+                                        <div class="profile-details-meta">
+                                            <div class="location">
+                                                <img src="{% static 'images/mail-2.svg' %}" /> {{ user.email }}
+                                            </div>
+                                            <div class="date">
+                                                <img
+                                                    src="{% static 'images/calendar.svg' %}" />{{ user.date_joined|date:"m.d.Y" }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="domains">
+                                <h3 class="mb-4">Personal Info</h3>
+                                {% if form.errors %}
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                <div class="form-group">
+                                    <input type="email" name="email" class="email-js form-control" id="id_email"
+                                        placeholder="E-mail: {{request.user.email}}" maxlength="255">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="name" class="required-js form-control" id="id_name"
+                                        placeholder="{% if request.user.name %}Name: {{request.user.name}}{% else %}Your name{% endif %}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="surname" class="required-js form-control" id="id_surname"
+                                        placeholder="{% if request.user.surname %}Surname: {{request.user.surname}}{% else %}Your surname{% endif %}">
+                                </div>
+                                <button class="btn btn-main" type="submit">Update</button>
+                                <div>
+                                    <a href="{% url 'users:user-edit-password-view' %}" class="link-arrow-purple">Change
+                                        password</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 payment-container">
+                            <div class="payment-header">
+                                <h3>Payment method</h3>
+                                <a href="#" class="btn-purple btn-sm">Add new</a>
+                            </div>
+                            <div class="payment-methods-content">
+                                <table class="table">
+                                    <tbody>
+                                        {% for method in payment_methods %}
+                                        <tr>
+                                            <td>
+                                                <p>{{method.holder_name}} XXXX-{{method.card_number|slice:":4"}}</p>
+                                                <p>Expires {{ method.end_date|date:"m.d.Y" }} • Added on</p>
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" href="#" id="navbarDropdown"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <img src="{% static 'images/more.svg' %}" class="more" />
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item"
+                                                            href="{% url 'users:update-payment-method' method.pk %}">Edit</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item"
+                                                            href="{% url 'users:delete-payment-method' method.pk %}">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a href="#" class="link-arrow-purple">Payment
+                                        history</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/profile_picture.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,293 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<style>
+  .notification {
+    display: none !important;
+  }
+
+  .header-nav {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+</style>
+<section class="business-name-header">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-9 text-center">
+        <h1>Startup Names</h1>
+        <p class="mb-4">
+          We offer attention-grabbing and creative startup names within the budget of newly established businesses.
+        </p>
+        <a href="{% url 'users:register-view' %}" class="btn-green btn-md"><span>Sign
+            Up Now</span>
+          <img src="{% static 'images/next-btn.svg' %}" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="related-domains">
+    {% for domain in domains %}
+    <a href="{% url 'main:domain-detail' domain.slug %}">
+      <div class="related-domain-single">
+        <div class="related-domain-image">
+          <img src="{{ domain.thumbnail_image.url }}" />
+        </div>
+        <div class="related-domain-meta">
+          <h5>{{ domain.name }}</h5>
+          <h5>${{ domain.price }}</h5>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="section content">
+  <div class="container">
+    <div class="row vert-center justify-content-center">
+      <div class="col-md-6">
+        <h3>Don't be Cheap</h3>
+        <p>
+          Getting a custom domain name for your startup business is essential. If you want to make your business seem
+          and feel
+          unique, you should not cut the budget from the domain name purchase. Yes, getting a name is not an expense.
+          Instead, it
+          is a long-term investment for your business.
+        </p>
+        <p>
+          You can enjoy several benefits of appealing names. First, you can promote your business identity. Attractive
+          domain
+          names create trust and signals that your business is here to stay and serve its customers. Next, it speeds up
+          the brand
+          recognition process. Carefully chosen startup names make your audience remember and quickly find your
+          business.
+        </p>
+        <div class="line mb-3 mt-3"></div>
+        <a href="#" class="small-btn">A complete toolkit for domain search</a>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'images/f.jpg' %}" style="max-height: 450px;margin: 0 auto;display: block;" />
+      </div>
+    </div>
+    <div class="row vert-center justify-content-center mb-5 mt-5">
+      <div class="col-md-6">
+        <img src="{% static 'images/Group-3.png' %}" />
+      </div>
+      <div class="col-md-6">
+        <h3>What Makes Fantastic Startup Domain Names?</h3>
+        <p>
+          Here are a few factors that affect the visibility and memorability of your startup business name. First, keep
+          it as
+          short as possible to make it easy to remember and type. Choosing a relevant name that communicates a valuable
+          message is
+          also important. If you want to get an exceptional name, do not be afraid of "out-of-the-box" names which are
+          unique and
+          innovative. Meanwhile, make it look clean and simple - without any grammar challenges. Plus, keep in mind that
+          describing your business or evoking emotions will make your name memorable.
+        </p>
+        <div class="line mb-3 mt-3"></div>
+        <a href="#" class="small-btn">A complete toolkit for domain search</a>
+      </div>
+    </div>
+    <div class="row mt-5 vert-center justify-content-center">
+      <div class="col-md-6">
+        <h3>How to Come Up with Creative Names?</h3>
+        <p>
+          One of the best ways to come up with creative ideas is creating a list of possible names. You should not limit
+          yourself
+          in this stage and write any idea that comes to your mind. You can also check books or dictionaries to find
+          words that
+          have relatable meanings but are unknown to many people. Such startup names can be more meaningful, and it will
+          seem
+          mysterious. Even if you prefer easy-to-understand names, play with them a little. For instance, change the
+          order of the
+          letters or the syllables. Adding different extensions to improve the richness of the startup names is also
+          advisable.
+        </p>
+        <div class="line mb-3 mt-3"></div>
+        <a href="#" class="small-btn">A complete toolkit for domain search</a>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'images/Group-4.png' %}" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section dark-content bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Follow The Standards While Being Creative</h2>
+      </div>
+      <div class="col-md-6">
+        <p class="subtitle">
+          Wonder how you can choose the best startup name? First, try not to make it complicated. Short domain names
+          with easy
+          spelling make the website more accessible. Your customers should not memorize whether they should write 5 or
+          five,
+          whether they need to put a dash or not to find your website. Keep it short and straightforward!
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-sm-12">
+        <img src="{% static 'images/social-commerce.jpg' %}" />
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <p>
+          Second, choose startup names that represent your business. You can put the brand values or delivered benefits
+          into the
+          name to communicate a reasonable message to the visitors. Even if you like non-existent names, try to
+          understand what
+          feelings the name provokes. A short name can still indicate the ease of the service, and weird names can seem
+          innovative. Let the startup name do the business for you.
+        </p>
+
+      </div>
+      <div class="col-md-4">
+        <p>
+          Third, make it catchy and relatable. Whether you choose a one-word name or a long one, try to make it as
+          attractive as
+          possible. Your potential customers should be amazed by the name tweaks you make or the message you deliver.
+          Catchy
+          startup names are easy to remember and help your business stand out in the competition where hundreds of
+          similar
+          companies try to survive.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          Lastly, test the name. If the startup domain names you like are already taken, make small adjustments. Change
+          extensions, add adjectives, or articles. Get feedback from your potential audience - ask them how they feel
+          toward the
+          name. Plus, use the name in different mediums such as logos or signatures. We have a massive selection of
+          domain names,
+          so even if you have to change the name, we have many more to offer you.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-grey">
+  <div class="container">
+    <div class="row pb-5">
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+          <h4>Search</h4>
+          <p>
+            Browse the names from our vast selection and check their relevance to your<br> startup business.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+          <h4>Decide</h4>
+          <p>
+            Make your decision on which name to get and click a few buttons to purchase the domain name quickly.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="work text-center">
+          <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+          <h4>Enjoy</h4>
+          <p>
+            Our team transfers the name to your account in a short time so that your business can enjoy the massive
+            benefits.
+          </p>
+          <a href="{% url 'main:domains' %}" class="link">
+            Learn More
+            <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cta-three">
+          <div class="content">
+            <h2>Take the First Step to a Successful Startup!</h2>
+            <a href="{% url 'users:register-view' %}" class="btn-green btn-md"><span>Sign Up Now</span>
+              <img src="{% static 'images/next-btn.svg' %}" /></a>
+          </div>
+          <div class="image">
+            <img src="{% static 'images/cta-image.png' %}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-sm-12 text-center">
+        <h2>Featured Industries</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="featured-industries">
+        <div class="featured-industry text-center">
+          <img src="{% static 'images/startup-in.svg' %}" />
+          <h5>Startup</h5>
+        </div>
+        <div class="featured-industry text-center">
+          <img src="{% static 'images/e-commerce-in.svg' %}" />
+          <h5>E commerce</h5>
+        </div>
+        <div class="featured-industry text-center">
+          <img src="{% static 'images/business-in.svg' %}" />
+          <h5>Business</h5>
+        </div>
+        <div class="featured-industry text-center">
+          <img src="{% static 'images/accounting-in.svg' %}" />
+          <h5>Accounting</h5>
+        </div>
+        <div class="featured-industry text-center">
+          <img src="{% static 'images/digital-marketing-in.svg' %}" />
+          <h5>Digital Marketing</h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <a href="{% url 'main:industries' %}" class="link">
+          See All Industries
+          <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

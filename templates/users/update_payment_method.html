@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block meta %}
+<title>Brandpulsar | Update Payment Method</title>
+{% endblock meta %}
+
+{% block content %}
+{% load static %}
+<style>
+    .header-nav,
+    .footer {
+        display: none;
+    }
+</style>
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="auth-container">
+                    <div class="auth-content" style="overflow-y: hidden;width: 100%;">
+                        <h1 class="pb-3">Update payment method</h1>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            {{form}}
+                            <div class="btn-container">
+
+                                <a class="btn-tr btn-md mr-2" href="{% url 'users:user-edit-view' %}">Cancel</a>
+                                <button class="btn-green btn-md" type="submit"
+                                    style="margin: 0px;cursor: pointer;">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+{% endblock meta %}
+{% block content %}
+{% load static %}
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center mb-5">FAQ</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Buyer</h4>
+                <div class="accordion" id="accordionExample">
+                    {% for faq in buyers %}
+                    <div
+                        class="card {% if faq.category == 'buyer' %} buyer{% elif faq.category == 'seller' %} seller{% endif %}">
+                        <div class="card-header" id="heading{{faq.pk}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapse{{faq.pk}}" aria-expanded="true"
+                                    aria-controls="collapse{{faq.pk}}">
+                                    {{faq.question}}
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapse{{faq.pk}}" class="collapse" aria-labelledby="heading{{faq.pk}}"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                {{faq.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>Seller</h4>
+                <div class="accordion" id="accordionExample">
+                    {% for faq in sellers %}
+                    <div
+                        class="card {% if faq.category == 'buyer' %} buyer{% elif faq.category == 'seller' %} seller{% endif %}">
+                        <div class="card-header" id="heading{{faq.pk}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapse{{faq.pk}}" aria-expanded="true"
+                                    aria-controls="collapse{{faq.pk}}">
+                                    {{faq.question}}
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapse{{faq.pk}}" class="collapse" aria-labelledby="heading{{faq.pk}}"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                {{faq.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

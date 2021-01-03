@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>Brandpulsar | Knowledge Base</title>
+{% endblock meta %}
+{% load mathfilters %}
+{% block content %}
+{% load static %}
+
+<section class="section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-12 text-center">
+                <h1>Knowledge Base</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h5 class="mb-4 mt-4">What happens after I purchase my domain?</h5>
+                <p>After a successful domain purchase, our automated system will immediately send a receipt to your
+                    email address. Your payment and the order you made are held securely in escrow. It guarantees that
+                    you will get either what you’ve ordered or your money back.</p>
+                <p>In the next 2 business days, our staff will contact you to complete the necessary steps to finish
+                    domain transfer. If you don’t reply to our several requests within a week, Brandpulsar may cancel
+                    your order and you might lose your domain.
+                </p>
+                <p>If you are not able to see our emails from Brandpulsar, check your spam folder and make sure that
+                    your email address is correctly indicated on our website. If you have provided the wrong contact
+                    information, please contact our support team.
+                </p>
+                <p>If you need any type of help or have questions (e.g. downloading logo design, helping to change DNS
+                    settings, etc) feel free to contact us.
+                </p>
+                <h5 class="mb-4 mt-4">Invoices of your purchase</h5>
+                <p>When you buy a domain name on Brandpulsar, the invoice confirming your order will be sent to you.
+                </p>
+                <p>If you want to pay via wire transfer, Brandpulsar will also give you an email with an invoice – so
+                    you can preview it and print it out if appropriate. An example of an invoice can be seen below.
+                </p>
+                <img src="{% static 'images/invoice.png' %}" class="mt-4 mb-4" alt="Premium domains for sale" />
+                <h2 class="mb-4 mt-4">Payments via Instalments</h2>
+                <h5 class="mb-4 mt-4">Termination of Instalment Payments</h5>
+                <p>You have a right to cancel your installment plan at any time, but you will not be eligible for
+                    getting any payment you already made for the domain.</p>
+                <p>If you want to cancel your instalment, you can send us a request via <a
+                        href="mailto:support@brandpulsar.com">support@brandpulsar.com</a></p>
+                <h5 class="mb-4 mt-4">Taking care of the instalments sooner</h5>
+                <p>If you wish, you can pay the remaining balance for your domain name to own it earlier at any time. No
+                    extra fee is charged for doing this.</p>
+                <p>Please let us know by sending an email to pay off your instalment earlier. In order to speed up the
+                    process, we advise you to write your domain name and number of remaining instalments in your
+                    message. Our team member will contact you shortly to finalize the payment.</p>
+                <h5 class="mb-4 mt-4">Handling missed and late payments</h5>
+                <p>Brandpulsar will continue to charge you after your successful first payment. If your next payments
+                    fail due to several reasons, such as the decline of the card, Brandpulsar will notify you about the
+                    error. If you do not complete the payment within 2 weeks, Brandpulsar has a right to cancel the
+                    order and the domain will be lost.</p>
+                <p>You are responsible for providing the correct email address for Brandpulsar and checking the emails
+                    we have sent you. We strongly recommend to mark Brandpulsar emails as not spam so your email app
+                    does not hide our important emails.</p>
+                <h5 class="mb-4 mt-4">Buying domains via instalments</h5>
+                <p>Our domain names can be bought via monthly instalments. Brandpulsar offers a 6-month installment
+                    plan for any domains on the website. When you buy a domain via monthly instalments, you’ll pay for
+                    the first month’s installment. Brandpulsar holds the domain name securely in Stripe. Then you will
+                    have a right to use the domain name: for instance, you can contact us to point DNS to your website,
+                    and email service but you will not have ownership until the full payment is done. You’ll be charged
+                    automatically every month within 6 months instalment range. At the end of the plan, Brandpulsar
+                    will transfer ownership of the domain names to you. We would like to emphasize that If you do not
+                    pay your instalments on time, the domain will be returned to its original owner. In the end, you
+                    will lose domain usage and will not be paid back for any of your payments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

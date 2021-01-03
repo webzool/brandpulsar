@@ -1,0 +1,17 @@
+{% load static %}
+<div class="sidebar bg-grey">
+    <h4 class="mb-3">Filters</h4>
+    <div class="mb-5 line"></div>
+    <h6>Industries</h6>
+    <ul class="induestries">
+        {% for industry in industries %}
+            {% if industry.name != 'Uncategorized' %}
+                <li><a href="{% url 'main:industry-detail' industry.slug %}">{{ industry.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <form action="" method="get" class="filter-form">
+        {{ filter.form }}
+        <input type="submit" value="Filter" class="filter-btn"/>
+    </form>
+</div>

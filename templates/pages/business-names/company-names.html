@@ -1,0 +1,278 @@
+{% extends 'base.html' %} {% block meta %}
+<title>{{ title }}</title>
+<meta name="description" content="{{ meta_description }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="{{ og_type }}" />
+<meta property="og:url" content="{{ og_url }}" />
+<meta property="og:image" content="{{ og_image }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta property="og:site_name" content="{{ og_site }}" />
+<meta name="robots" content="index, follow" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:site" content="@Brand_Pulsar" />
+<meta name="twitter:creator" content="@Brand_Pulsar" />
+
+{% endblock meta %} {% block content %} {% load static %}
+<style>
+    .notification {
+        display: none !important;
+    }
+
+    .header-nav {
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }
+</style>
+<section class="business-name-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-9 text-center">
+                <h1>Company Names</h1>
+                <p class="mb-4">
+                    Whether you have finance, marketing, hospitality, or any other company, we can offer a catchy domain
+                    name that perfectly
+                    fits your industry.
+                </p>
+                <a href="{% url 'main:domains' %}" class="btn-green btn-md"><span>Go To
+                        Domains</span>
+                    <img src="{% static 'images/next-btn.svg' %}" /></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="related-domains">
+        {% for domain in domains %}
+        <a href="{% url 'main:domain-detail' domain.slug %}">
+            <div class="related-domain-single">
+                <div class="related-domain-image">
+                    <img src="{{ domain.thumbnail_image.url }}" />
+                </div>
+                <div class="related-domain-meta">
+                    <h5>{{ domain.name }}</h5>
+                    <h5>${{ domain.price }}</h5>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+<section class="section content">
+    <div class="container">
+        <div class="row vert-center justify-content-center">
+            <div class="col-md-6">
+                <h3>Company and Domain Name</h3>
+                <p>
+                    Company names identify the businesses and help them to stand out among hundreds of alternatives. It
+                    shows how the
+                    business benefits potential customers, the company's values, and, overall, showcases the brand
+                    image. Your domain name
+                    acts in the same way as your company name.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/f.jpg' %}" style="max-height: 450px;margin: 0 auto;display: block;" />
+            </div>
+        </div>
+        <div class="row vert-center justify-content-center mb-5 mt-5">
+            <div class="col-md-6">
+                <img src="{% static 'images/Group-3.png' %}" />
+            </div>
+            <div class="col-md-6">
+                <h3>Importance of the Names</h3>
+                <p>
+                    Does a powerful, effective, and memorable company name have any impact on the growth of your
+                    business? Yes, it does.
+                    First impressions are crucial to your business. And if potential customers get the wrong idea about
+                    your company for the
+                    first time, that may be the decline of your business. That also goes to your domain name. Numerous
+                    research has been
+                    conducted to prove this theory. It takes three seconds for your potential clients to make quick
+                    judgments, according to
+                    Harvard University. That’s why you need a company name and a domain name that reflects the image and
+                    identity of your
+                    business, or as we refer it, the “soul” of your business. If people don’t connect with your
+                    business, they won’t
+                    associate with your brand.
+                </p>
+                <p>
+                    Sure, it is desirable to have your business name match your domain name because clients can easily
+                    access your websites.
+                    However, your dream domain name might not be available. You can still enjoy the desirable name with
+                    the help of a few
+                    techniques. For example, you can choose a different extension, or a top-level domain. In this case,
+                    the second-level
+                    domain will stay the same, but you will get the name because the extension is different. Tweaking a
+                    name a little with
+                    articles or adjectives, and trying to buy the used domain name are among the other options.
+                </p>
+                <div class="line mb-3 mt-3"></div>
+                <a href="#" class="small-btn">A complete toolkit for domain search</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section dark-content bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Features of Successful Company Names</h2>
+            </div>
+            <div class="col-md-6">
+                <p class="subtitle">
+                    <strong>The right company name is usually short, making it easy to memorize and type.</strong>
+                    Short company names fit the logos or signatures and look visually attractive on billboards, forms,
+                    or other types of
+                    marketing mediums. Let your potential customer recognize and use your name effortlessly.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <img src="{% static 'images/social-commerce.jpg' %}" />
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <p>
+                    <strong>Your company name should be unique.</strong><br>
+                    Copycatting your competitors or using common strategies will make your brand one of the hundreds of
+                    similar
+                    alternatives. Instead, choose an exciting and unusual name to make your company stand out. Do not
+                    use articles, symbols,
+                    or numbers in your domain and company names unless it is absolutely necessary because your customers
+                    will be confused.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <strong>Your company will grow in the future. Make room for it.</strong><br>
+                    Among other relevant reasons, your business should grow. Hence, your company name should be
+                    relatable in different
+                    languages and for people of various countries. The business name should not entail anything that
+                    limits it to a specific
+                    state, geographical location, or country, unless there is a specificity to your business.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <strong>The name of your business should not lose its meaning over time.</strong><br>
+                    Try to come up with future-proof names for the longevity of your business. Meanwhile, keep in mind
+                    that you can create a
+                    domain name the same as your company name. If the domain name is not available, you can enjoy using
+                    your values or
+                    slogan as the website name.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-grey">
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/best-names.svg' %}" alt="Brandpulsar" />
+                    <h4>Browse</h4>
+                    <p>
+                        Find great ideas for your company and domain names in our massive selection.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/right-prices.svg' %}" alt="Brandpulsar" />
+                    <h4>Choose</h4>
+                    <p>
+                        Consider the features of successful company names and choose one for your business.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="work text-center">
+                    <img src="{% static 'images/fast-transfer.svg' %}" alt="Brandpulsar" />
+                    <h4>Access</h4>
+                    <p>
+                        Get quick ownership of your chosen name and enjoy its vast benefits.
+                    </p>
+                    <a href="{% url 'main:domains' %}" class="link">
+                        Learn More
+                        <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cta-three">
+                    <div class="content">
+                        <h2>Creative Domain Names for the Success of Your Company</h2>
+                        <a href="{% url 'users:register-view' %}" class="btn-green btn-md"><span>Sign Up Now</span>
+                            <img src="{% static 'images/next-btn.svg' %}" /></a>
+                    </div>
+                    <div class="image">
+                        <img src="{% static 'images/cta-image.png' %}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-12 text-center">
+                <h2>Featured Industries</h2>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="featured-industries">
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/startup-in.svg' %}" />
+                    <h5>Startup</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/e-commerce-in.svg' %}" />
+                    <h5>E commerce</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/business-in.svg' %}" />
+                    <h5>Business</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/accounting-in.svg' %}" />
+                    <h5>Accounting</h5>
+                </div>
+                <div class="featured-industry text-center">
+                    <img src="{% static 'images/digital-marketing-in.svg' %}" />
+                    <h5>Digital Marketing</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'main:industries' %}" class="link">
+                    See All Industries
+                    <img src="{% static 'images/right-arrow-purple.svg' %}" alt="Brandpulsar" />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
