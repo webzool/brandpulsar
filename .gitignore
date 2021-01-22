@@ -1,0 +1,9 @@
+# editor
+.vscode
+.editorconfig
+*/.DS_Store
+# environment
+venv
+# django
+*/__pycache__
+*/migrations
