@@ -7,3 +7,8 @@ venv
 # django
 */__pycache__
 */migrations
+# assets
+static
+media-root
+# logs
+log
