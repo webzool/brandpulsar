@@ -3,15 +3,15 @@ from main.models import BlogPost, Domain, BlogCategory, Industry
 from django.urls import reverse
 
 
-# class BlogPostSitemap(Sitemap):
-#     changefreq = "never"
-#     priority = 0.5
-#
-#     def items(self):
-#         return BlogPost.objects.all()
-#
-#     def lastmod(self, obj):
-#         return obj.date_updated
+class BlogPostSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return BlogPost.objects.all()
+
+    def lastmod(self, obj):
+        return obj.date_updated
 
 
 class DomainSitemap(Sitemap):
@@ -30,12 +30,12 @@ class IndustrySitemap(Sitemap):
         return Industry.objects.all()
 
 
-# class BlogCategorySitemap(Sitemap):
-#     changefreq = "never"
-#     priority = 0.5
-#
-#     def items(self):
-#         return BlogCategory.objects.all()
+class BlogCategorySitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return BlogCategory.objects.all()
 
 
 class StaticViewSitemap(Sitemap):

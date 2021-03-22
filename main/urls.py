@@ -2,10 +2,12 @@ from django.urls import path, include
 from main import views
 from main.views import *
 from django.contrib.sitemaps.views import sitemap
-from main.sitemaps import DomainSitemap, StaticViewSitemap
+from main.sitemaps import DomainSitemap, StaticViewSitemap, BlogPostSitemap, BlogCategorySitemap
 
 sitemaps = {
     'portfolio': DomainSitemap,
+    'blog': BlogPostSitemap,
+    'blog-category': BlogCategorySitemap,
     'static': StaticViewSitemap
 }
 
